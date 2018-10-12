@@ -1,0 +1,5 @@
+# Ignore XeLaTeX auxiliary files
+*.aux
+*.log
+*.out
+*.synctex.gz
