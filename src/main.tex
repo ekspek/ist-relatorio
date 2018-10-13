@@ -1,10 +1,21 @@
-\RequirePackage[l2tabu, orthodox]{nag}
-\documentclass{article}
+\documentclass{ist-report}
 
 \input{preamble}
 
 \begin{document}
 
-Olá Mundo! % Don't give me that look, it's a latin text test
+% Sketch the look of a page in Illustrator, like, why not?
+% Define a lot of characteristics like number commas and exponencials of base 10 and unit representations and stuff
+% Also a tree of what happens with which compilers are used, options and whatnot
+
+\section{Introduction}
+
+This project has the focus on creating a generic \LaTeX{} report example for IST students to base their own reports upon, to streamline much of the typesetting end of things for an IST report so students and other users can focus on writing content instead of spending time getting \LaTeX{} to work. Hopefully it can also work as a first dive for those who want to learn \LaTeX{} a tad more deeply than that. The final goal being having a working example using a custom class file that contains as many definitions as it can with the least possible amount of custom packages, with a couple of simple customisation options, so it can work as a simple template for those who need it. Obviously I'm taking some liberties with how it will end up looking, but hopefully it'll look pretty and professional and presentable and not really as over-the-top as it'd look like if you'd let me loose with Illustrator, a bottle of Jägermeister and a kaleidoscope.
+
+This project also aims to be a learning experience for me. I've only scratched the surface of \LaTeX{} apparently, and looking at examples from other universities made me want to see where I can go before giving up or losing my head. \emph{Obviously} the sane decision in this scenario would be an attempt at creating a class for IST-based reports, much in the vein of what TU Delft did with their \textit{Huisstijl} standardization, which will probably only take up enough time to make me forget to cook every day I mess with it. Hopefully I won't end up copy-pasting \emph{too} much of their work, which I profoundly admire.
+
+A lot of information was acquired from \textit{The \LaTeX{} Companion}\cite{latex-companion}, which provided a solid base on how to build a class file based on the needs at hand. Other sources to follow, as I'm kinda tired.
+
+\printbibliography
 
 \end{document}
