@@ -3,3 +3,12 @@
 *.log
 *.out
 *.synctex.gz
+
+# Ignore Biber auxiliary files
+*.bbl
+*.bcf
+*.blg
+*.run.xml
+
+# Ignore Kile auxiliary files
+*.kate-swp
