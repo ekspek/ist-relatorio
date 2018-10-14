@@ -1,5 +1,4 @@
 % -- Language and text settings
-\usepackage[british]{babel}
 \usepackage{microtype}
 \usepackage{xcolor}
 
@@ -18,23 +17,27 @@
     rmargin = 2.5cm}
 % \usepackage{showframe}
 
+\usepackage{nimbusmononarrow}
+
+\usepackage{minted}
+
 % -- Bibliography
 \usepackage{csquotes}
 \usepackage{biblatex}
 \addbibresource{main.bib}
 
 % -- Header and footer
-\usepackage[bottom]{footmisc}
+\usepackage{footmisc}
 \usepackage{fancyhdr}
 \fancyhf{}
-\pagestyle{empty}%{fancy}
-\fancyhead[L]{\textsc{Left Header}}
+\pagestyle{fancy}
+\fancyhead[L]{}
 \fancyhead[C]{}
-\fancyhead[R]{\thepage}
+\fancyhead[R]{Report Example}
 \fancyfoot[L]{}
 \fancyfoot[C]{}
-\fancyfoot[R]{}
-\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[R]{\huge{} \raisebox{-5pt}{\includegraphics[height = 20pt]{IST_C_CMYK_NEG_CROPPED}} \hspace*{2pt} \vrule{} \hspace*{2pt} \thepage{}}
+\renewcommand{\headrulewidth}{0.2pt}
 \renewcommand{\footrulewidth}{0pt}
 
 % -- Extra math options

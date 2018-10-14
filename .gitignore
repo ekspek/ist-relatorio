@@ -1,14 +1,18 @@
-# Ignore XeLaTeX auxiliary files
+# XeLaTeX auxiliary files
 *.aux
 *.log
 *.out
 *.synctex.gz
+*.toc
 
-# Ignore Biber auxiliary files
+# Biber auxiliary files
 *.bbl
 *.bcf
 *.blg
 *.run.xml
 
-# Ignore Kile auxiliary files
+# Kile auxiliary files
 *.kate-swp
+
+# Minted auxiliary folder
+src/_minted-main/
