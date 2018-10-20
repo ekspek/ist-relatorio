@@ -1,4 +1,5 @@
-\documentclass[]{ist-report}
+\RequirePackage[l2tabu, orthodox]{nag}
+\documentclass{ist-report}
 
 \input{preamble}
 
@@ -7,10 +8,6 @@
 \begin{document}
 
 \thispagestyle{empty}
-
-\title{Report Example}
-\author{Daniel de Schiffart}
-\date{\today}
 
 \begin{center}
 	\vspace{15mm}
@@ -27,7 +24,6 @@
 
 \pagebreak
 
-% Sketch the look of a page in Illustrator, like, why not?
 % Define a lot of characteristics like number commas and exponencials of base 10 and unit representations and stuff
 % Also a tree of what happens with which compilers are used, options and whatnot
 % Document the TUDelft class file based on the blocks I just defined on the tudelft-report-commented.cls file
@@ -125,13 +121,52 @@ A basic Ti\textit{k}Z drawing of a tall box can be found in figure \ref{fig:tikz
 	\label{fig:tikz_ex1}
 \end{figure}
 
+\begin{figure}[ht]
+	\centering
+	\scalebox{0.8}{
+	\begin{tikzpicture}[clipboard/.style = {rectangle, draw, inner sep = 2cm},
+						app/.style = {rectangle, draw, inner sep = 3mm},
+						socketin/.style = {rectangle, color = black!70!green},
+						pathstyle/.style = {->},
+						pathlabel/.style ={color = black!40!blue}]
+		% Start of Clipboard 1
+		\node (app1) at (0,0) [app] {App 1};
+		\node (app2) [app, right = 1.7cm of app1] {App 2};
+		\node (t2app1) [socketin, below = 3cm of app1] {\texttt{thread\_1}};
+		\node (t2app2) [socketin, below = 3cm of app2] {\texttt{thread\_1}};
+		\draw [pathstyle] (app1) to [bend right = 20] node [auto,swap,align = right, pathlabel] {\footnotesize \ttfamily copy \\ \footnotesize \ttfamily paste \\ \footnotesize \ttfamily wait \\ \footnotesize \ttfamily disconnect} (t2app1);
+		\draw [pathstyle] (t2app1) to [bend right = 20] (app1);
+		\draw [pathstyle] (app2) to [bend right = 20] (t2app2);
+		\draw [pathstyle] (t2app2) to [bend right = 20] (app2);
+		\path (t2app1.north) to node (clip1) [auto, swap, clipboard] {\LARGE Clipboard 1} (t2app2.north);
+		\path (clip1.north east) to node (clip1in1) [auto, swap, align = right, yshift = 0.5cm, socketin] {\texttt{thread\_1}} node (clip1in3) [auto, swap, align = right, yshift = -0.5cm, socketin] {\texttt{thread\_3}} (clip1.south east);
+		% Start of Clipboard 2
+		\node (app3) at (10,0) [app] {App 3};
+		\node (app4) [app, right = 1.7cm of app3] {App 4};
+		\node (t2app3) [socketin, below = 3cm of app3] {\texttt{thread\_1}};
+		\node (t2app4) [socketin, below = 3cm of app4] {\texttt{thread\_1}};
+		\draw [pathstyle] (app3) to [bend right = 20] (t2app3);
+		\draw [pathstyle] (t2app3) to [bend right = 20] (app3);
+		\draw [pathstyle] (app4) to [bend right = 20] (t2app4);
+		\draw [pathstyle] (t2app4) to [bend right = 20] (app4);
+		\path (t2app3.north) to node (clip2) [auto, swap, clipboard] {\LARGE Clipboard 2} (t2app4.north);
+		\path (clip2.north west) to node (clip2in1) [auto, align = left, yshift = 0.5cm, socketin] {\texttt{thread\_1}} (clip2.south west);
+		% Paths in between
+		\draw [pathstyle] (clip1in1.north east) -- node [auto, align = center, pathlabel] {\ttfamily \footnotesize paste \\ \ttfamily \footnotesize redirect} (clip2in1.north west);
+		\draw [pathstyle] (clip2in1) -- (clip1in1);
+		\draw [pathstyle] (clip1in3.east) -- node [auto, swap, pathlabel] {\ttfamily \footnotesize redirect} (clip2in1);
+	\end{tikzpicture}}
+	\caption{A slightly longer T\textit{i}kZ example.}
+	\label{fig:scheme_main}
+\end{figure}
+
 \subsection{Plots}
 
 \subsection{Code Snippets and Extracts}
 
 The objective is to have any code content use the \package{minted} package to typeset code. However, due to the high number of requirements to properly run \package{minted} on a local installation of \TeX{}, this option should only be used with an online editor (\textit{Overleaf} comes as the most prominent example). In any case, for the time being \package{minted} is included in this template, but can be further on replaced with a package like \package{listings}, possibly using a class option. Plans are also down to include a tutorial on how to check and install \package{minted} and get it to work.
 
-Here is a basic excerpt of a basic C \textit{Hello World!\ } program.
+Here is a basic excerpt of a basic C \textit{Hello World} program.
 \begin{minted}[frame = lines, linenos]{c}
 #include <stdio.h>
 
@@ -149,7 +184,15 @@ This section is the most relevant for the class file itself, what it exactly con
 
 \subsection{Options}
 
-\subsection{Loaded Packages}
+Currently no options are implemented. The current class carries only default configurations.
+
+\subsection{Packages}
+
+I'm still settling on a way to represent packages, descriptions and links. Until then, they're all listed here in an \texttt{itemize} environment.
+\begin{itemize}
+	\item \package{mathtools}
+	\item \package{babel [portuguese, english]}
+\end{itemize}
 
 \subsection{Class Contents}
 

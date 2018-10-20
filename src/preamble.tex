@@ -1,24 +1,10 @@
-% -- Language and text settings
-\usepackage{microtype}
-\usepackage{xcolor}
+% Packages and configurations here aren't really necessary to define the style,
+% but are recommended to use. Some packages require users to know extra commands
+% to use properly, so I won't include them in the class file for now.
 
-% -- Encoding and font
-% \usepackage[utf8]{inputenc} -- Use XeLaTeX you dolt
-% \usepackage[T1]{fontenc} -- Did I stutter?
-% \usepackage{lmodern} -- No.
-\usepackage{newpxtext,newpxmath}
+% Other stuff like the bibliography I'll take my time before implementing.
 
-% -- Document margins
-\usepackage{geometry}
-\geometry{verbose, nomarginpar,
-    tmargin = 2.5cm,
-    bmargin = 2.5cm,
-    lmargin = 2.5cm,
-    rmargin = 2.5cm}
-% \usepackage{showframe}
-
-\usepackage{nimbusmononarrow}
-
+% -- Code snippets (this one is a challenge to implement)
 \usepackage{minted}
 
 % -- Bibliography
@@ -26,23 +12,8 @@
 \usepackage{biblatex}
 \addbibresource{main.bib}
 
-% -- Header and footer
-\usepackage{footmisc}
-\usepackage{fancyhdr}
-\fancyhf{}
-\pagestyle{fancy}
-\fancyhead[L]{}
-\fancyhead[C]{}
-\fancyhead[R]{Report Example}
-\fancyfoot[L]{}
-\fancyfoot[C]{}
-\fancyfoot[R]{\huge{} \raisebox{-5pt}{\includegraphics[height = 20pt]{IST_C_CMYK_NEG_CROPPED}} \hspace*{2pt} \vrule{} \hspace*{2pt} \thepage{}}
-\renewcommand{\headrulewidth}{0.2pt}
-\renewcommand{\footrulewidth}{0pt}
-
 % -- Extra math options
-\usepackage{mathtools}
-\usepackage{siunitx}
+\usepackage{siunitx} % todo: define unit representation
 
 % -- Extra symbols
 \usepackage{amssymb}
@@ -50,21 +21,13 @@
 \usepackage{gensymb}
 \usepackage{cancel}
 
-% -- Links and references
-\usepackage{hyperref}
-\hypersetup{colorlinks,
-	linkcolor	= {red!50!black},
-	citecolor	= {green!30!black},
-	urlcolor	= {blue!80!black}}
-
 % --  Image and float settings
 \usepackage{graphicx}
 \graphicspath{{graphics/}}
-\usepackage{caption}
 \usepackage{subcaption}
 
 % -- Graphs and diagrams
 \usepackage{tikz}
 \usepackage{pgfplots}
 \usetikzlibrary{arrows.meta,positioning}
-\pgfplotsset{compat=1.5, table/search path = {data}}
+\pgfplotsset{compat = newest, table/search path = {data/}}
