@@ -33,7 +33,7 @@
 \RequirePackage{caption}
 
 % ------------------ Main Code -------------------
-\renewcommand*\title[1][Report Example]{\def\@title{#1}}
+\renewcommand*\title[1][Right Header]{\def\@title{#1}}
 \title{}
 
 \graphicspath{{graphics/}}
