@@ -16,3 +16,6 @@
 
 # Minted auxiliary folder
 src/_minted-main/
+
+# pdf output files
+src/*.pdf

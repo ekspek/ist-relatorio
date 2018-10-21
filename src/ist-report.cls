@@ -14,11 +14,14 @@
 % --------------- Package Loading ----------------
 \LoadClass{article}
 
-%\RequirePackage{lmodern}
-\RequirePackage{newpxtext,newpxmath}
-%\RequirePackage{nimbusmononarrow}
 \RequirePackage[portuguese,english]{babel} % Last language defines main document language
+\RequirePackage{fontspec}
 \RequirePackage{microtype}
+
+\RequirePackage{lmodern}
+%\RequirePackage{newpxtext,newpxmath}
+%\RequirePackage{nimbusmononarrow}
+
 \RequirePackage{xcolor}
 
 \RequirePackage[xetex]{geometry}
