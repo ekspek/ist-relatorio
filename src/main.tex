@@ -1,5 +1,5 @@
 \RequirePackage[l2tabu, orthodox]{nag}
-\documentclass{ist-report}
+\documentclass[palatino]{ist-report}
 
 \input{preamble}
 
@@ -81,6 +81,14 @@ According to the \textit{Wikibooks} \LaTeX{} online textbook \cite{latexwiki},
 \end{quote}
 
 \subsubsection{Figures}
+
+\begin{figure}[ht]
+	\centering
+	\includegraphics[width = 0.4\textwidth]{example-image}
+	\caption{This is an example image inside a \texttt{figure} float.}
+	\label{fig:example}
+\end{figure}
+
 
 \subsubsection{Tables}
 
@@ -178,28 +186,10 @@ int main(void)
 }
 \end{minted}
 
-\section{Class File Documentation}
-
-This section is the most relevant for the class file itself, what it exactly contains, what its options are, and a concise documentation of its development, which will grow as the class file progresses. The class file itself, \texttt{ist-report.cls}, should be in the same directory as the \texttt{main.tex} file.
-
-\subsection{Options}
-
-Currently no options are implemented. The current class carries only default configurations.
-
-\subsection{Packages}
-
-I'm still settling on a way to represent packages, descriptions and links. Until then, they're all listed here in an \texttt{itemize} environment.
-\begin{itemize}
-	\item \package{mathtools}
-	\item \package{babel [portuguese, english]}
-\end{itemize}
-
-\subsection{Class Contents}
-
-The class file is based off of the \LaTeX{} basic \package{article} class, edited to fit the Instituto Superior Técnico theme.
+\input{classdoc}
 
 \pagebreak
 
-%\printbibliography
+\printbibliography
 
 \end{document}

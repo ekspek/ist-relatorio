@@ -1,0 +1,32 @@
+\section{Class File Documentation}
+
+This section is the most relevant for the class file itself, what it exactly contains, what its options are, and a concise documentation of its development, which will grow as the class file progresses. The class file itself, \texttt{ist-report.cls}, should be in the same directory as the \texttt{main.tex} file.
+
+\subsection{Options}
+
+\begin{description}
+	\item[Compiler detection] The class detects the compiler being used and will react accordingly, defining certain settings to support the compiler's capabilities and shortcomings. Preferred compiler is \package{XeLaTeX}, to make full use of the class file\footnotemark{}. \footnotetext{Actually, for the time being the class makes no special use of unicode compilers (except removing font encoding). Future plans are to add Arial and other OpenType fonts to the mix though.}
+	\item[palatino] This option changes the main font to the palatino-inspired \package{newpxtext}, with math text using \package{eulervm} and typewriter text to \package{nimbusmono}. Off by default.
+\end{description}
+
+\subsection{Packages}
+
+I'm still settling on a way to represent packages, descriptions and links. Until then, they're all listed here in an \texttt{itemize} environment.
+\begin{itemize}
+	\item \package{mathtools}
+	\item \package{babel [portuguese, english]}
+	\item \package{geometry [xetex]}
+	\item \package{graphicx [xetex]}
+	\item \package{hyperref [xetex]}
+	\item \package{fontspec}
+	\item \package{microtype}
+	\item \package{lmodern}
+	\item \package{xcolor}
+	\item \package{fancyhdr}
+	\item \package{footmisc [bottom]}
+	\item \package{caption}
+\end{itemize}
+
+\subsection{Class Contents}
+
+The class file is based off of the \LaTeX{} basic \package{article} class, edited to fit the Instituto Superior Técnico theme.

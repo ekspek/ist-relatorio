@@ -4,7 +4,7 @@ Relatório de exemplo para alunos do Instituto Superior Técnico. Este projecto 
 
 ## To-do
 
-* Criar uma classe separada separada do ficheiro .tex principal.
+* ~~Criar uma classe separada separada do ficheiro .tex principal.~~
 * Criar capa
 * Remover os logótipos pré-release, criar placeholders, implementar pdfcrop
 * Criar makefile
@@ -12,16 +12,18 @@ Relatório de exemplo para alunos do Instituto Superior Técnico. Este projecto 
 
 ## Opções
 
-De início não vão ser implementadas opções, em vez aderindo a um estilo pré-definido que funcione em conjunção com a classe. À medida que o projeto progride serão implementadas não só opções adicionais como variantes de capas e estilos de páginas.
+De início não vão ser implementadas muitas opções, em vez aderindo a um estilo pré-definido que funcione em conjunção com a classe. À medida que o projeto progride serão implementadas não só opções adicionais como variantes de capas e estilos de páginas.
 
 ### Implementadas
+
+* Tipo de letra
 
 ### A Implementar
 
 * Português / inglês
+* Cores / preto e branco
 * Com / sem capa / variações de capa
 * Estilo de cabeçalho / rodapé
-* Tipo de letra
 * Versão minted, check de instalações
 * Versão IST purista (Arial, margens pré-definidas, outros detalhes)
 
