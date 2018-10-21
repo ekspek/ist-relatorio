@@ -3,11 +3,13 @@
 \ProvidesClass{ist-report}[2018/10/20 v.0.0.1 Unofficial IST ULisboa generic report class]
 
 % ----------------- Initial Code -----------------
+\newif\if@palatino
 
 % ------------ Declaration of Options ------------
+\DeclareOption{palatino}{\@palatinotrue}
+\DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 
 % ------------- Execution of Options -------------
-\DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 \ExecuteOptions{}
 \ProcessOptions\relax
 
@@ -15,23 +17,45 @@
 \LoadClass{article}
 
 \RequirePackage[portuguese,english]{babel} % Last language defines main document language
-\RequirePackage{fontspec}
+
+\RequirePackage{mathtools}
+\RequirePackage[bottom]{footmisc}
+
+\RequirePackage{ifxetex}
+\RequirePackage{ifpdf}
+\ifxetex
+	\RequirePackage[xetex]{geometry}
+	\RequirePackage[xetex]{graphicx}
+	\RequirePackage[xetex]{hyperref}
+	\RequirePackage{fontspec}
+	\defaultfontfeatures{Ligatures = TeX}
+\else
+	\ifpdf
+		\RequirePackage[utf8]{inputenc}
+		\RequirePackage[T1]{fontenc}
+		\RequirePackage[pdftex]{geometry}
+		\RequirePackage[pdftex]{graphicx}
+		\RequirePackage[pdftex]{hyperref}
+	\else
+		\RequirePackage[dvips]{geometry}
+		\RequirePackage[dvips]{graphicx}
+		\RequirePackage[hypertex]{hyperref}
+	\fi
+\fi
+
 \RequirePackage{microtype}
 
-\RequirePackage{lmodern}
-%\RequirePackage{newpxtext,newpxmath}
-%\RequirePackage{nimbusmononarrow}
+\if@palatino
+	\RequirePackage{newpxtext}
+	\RequirePackage{eulervm}
+	\RequirePackage{nimbusmono}
+\else
+	\RequirePackage{lmodern}
+\fi
 
 \RequirePackage{xcolor}
 
-\RequirePackage[xetex]{geometry}
-\RequirePackage[xetex]{graphicx}
-\RequirePackage[xetex]{hyperref}
-
-\RequirePackage{mathtools}
-
 \RequirePackage{fancyhdr}
-\RequirePackage[bottom]{footmisc}
 
 \RequirePackage{caption}
 
@@ -51,9 +75,9 @@
 \definecolor{ist-gray}{cmyk}{0.2,0,0,0.8}
 
 \hypersetup{colorlinks,
-	linkcolor	= {red!50!black},
-	citecolor	= {green!30!black},
-	urlcolor	= {blue!80!black}}
+	linkcolor	= {ist-cyan},
+	citecolor	= {ist-gray},
+	urlcolor	= {ist-cyan}}
 
 \fancyhf{}
 \pagestyle{fancy}
