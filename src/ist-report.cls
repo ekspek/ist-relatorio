@@ -1,28 +1,49 @@
 % ---------------- Identification ----------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ist-report}[2018/10/20 v.0.0.1 Unofficial IST ULisboa generic report class]
+\ProvidesClass{ist-report}[2018/10/20 v.0.2.0 Unofficial IST ULisboa generic report class]
 
 % ----------------- Initial Code -----------------
 \newif\if@palatino
+\newif\if@portuguese
+\newif\if@english
 
 % ------------ Declaration of Options ------------
 \DeclareOption{palatino}{\@palatinotrue}
+\DeclareOption{portuguese}{\@portuguesetrue\@englishfalse}
+\DeclareOption{english}{\@englishtrue\@portuguesefalse}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 
 % ------------- Execution of Options -------------
-\ExecuteOptions{}
+\ExecuteOptions{portuguese}
 \ProcessOptions\relax
 
 % --------------- Package Loading ----------------
 \LoadClass{article}
 
-\RequirePackage[portuguese,english]{babel} % Last language defines main document language
+\RequirePackage{ifxetex}
+\RequirePackage{ifpdf}
+
+\ifxetex
+	\RequirePackage{polyglossia}
+	\if@portuguese
+		\setmainlanguage{portuges}
+		\setotherlanguage[variant = british]{english}
+	\fi\if@english
+		\setmainlanguage[variant = british]{english}
+		\setotherlanguage{portuges}
+	\fi
+\else
+	\if@portuguese
+		\RequirePackage[portuguese]{babel}
+	\fi
+	\if@english
+		\RequirePackage[english]{babel}
+	\fi
+\fi
 
 \RequirePackage{mathtools}
 \RequirePackage[bottom]{footmisc}
 
-\RequirePackage{ifxetex}
-\RequirePackage{ifpdf}
 \ifxetex
 	\RequirePackage[xetex]{geometry}
 	\RequirePackage[xetex]{graphicx}
@@ -60,8 +81,23 @@
 \RequirePackage{caption}
 
 % ------------------ Main Code -------------------
-\renewcommand*\title[1][Right Header]{\def\@title{#1}}
-\title{}
+\if@portuguese
+	\def\@title{Título de Exemplo}
+	\def\@subtitle{Subtítulo de Exemplo}
+	\def\@subject{Disciplina de Exemplo}
+	\def\@course{Curso de Exemplo}
+\fi\if@english
+	\def\@title{Sample Title}
+	\def\@subtitle{Sample Subtitle}
+	\def\@subject{Sample Course}
+	\def\@course{Sample Degree}
+\fi
+\def\@institution{Instituto Superior Técnico}
+
+\renewcommand*\title[1]{\def\@title{#1}}
+\newcommand*\subtitle[1]{\def\@subtitle{#1}}
+\newcommand*\subject[1]{\def\@subject{#1}}
+\newcommand*\course[1]{\def\@course{#1}}
 
 \graphicspath{{graphics/}}
 

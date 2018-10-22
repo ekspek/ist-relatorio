@@ -4,7 +4,7 @@ Relatório de exemplo para alunos do Instituto Superior Técnico. Este projecto 
 
 ## To-do
 
-* ~~Criar uma classe separada separada do ficheiro .tex principal.~~
+* ~~Criar uma classe separada do ficheiro .tex principal.~~
 * Criar capa
 * Remover os logótipos pré-release, criar placeholders, implementar pdfcrop
 * Criar makefile
@@ -17,10 +17,10 @@ De início não vão ser implementadas muitas opções, em vez aderindo a um est
 ### Implementadas
 
 * Tipo de letra
+* Português / inglês
 
 ### A Implementar
 
-* Português / inglês
 * Cores / preto e branco
 * Com / sem capa / variações de capa
 * Estilo de cabeçalho / rodapé
