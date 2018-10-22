@@ -1,16 +1,18 @@
 % ---------------- Identification ----------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ist-report}[2018/10/20 v.0.2.0 Unofficial IST ULisboa generic report class]
+\ProvidesClass{ist-report}[2018/10/20 v.0.2.1 Unofficial IST ULisboa generic report class]
 
 % ----------------- Initial Code -----------------
 \newif\if@palatino
 \newif\if@portuguese
 \newif\if@english
+\newif\if@blackandwhite
 
 % ------------ Declaration of Options ------------
 \DeclareOption{palatino}{\@palatinotrue}
 \DeclareOption{portuguese}{\@portuguesetrue\@englishfalse}
 \DeclareOption{english}{\@englishtrue\@portuguesefalse}
+\DeclareOption{bw}{\@blackandwhitetrue}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 
 % ------------- Execution of Options -------------
@@ -93,11 +95,13 @@
 	\def\@course{Sample Degree}
 \fi
 \def\@institution{Instituto Superior Técnico}
+\def\@groupno{0}
 
 \renewcommand*\title[1]{\def\@title{#1}}
 \newcommand*\subtitle[1]{\def\@subtitle{#1}}
 \newcommand*\subject[1]{\def\@subject{#1}}
 \newcommand*\course[1]{\def\@course{#1}}
+\newcommand*\groupno[1]{\def\@groupno{#1}}
 
 \graphicspath{{graphics/}}
 
@@ -107,8 +111,13 @@
 	lmargin = 2.5cm,
 	rmargin = 2.5cm}
 
-\definecolor{ist-cyan}{cmyk}{1,0,0,0}
-\definecolor{ist-gray}{cmyk}{0.2,0,0,0.8}
+\if@blackandwhite
+	\definecolor{ist-cyan}{cmyk}{1,1,1,1}
+	\definecolor{ist-gray}{cmyk}{1,1,1,1}
+\else
+	\definecolor{ist-cyan}{cmyk}{1,0,0,0}
+	\definecolor{ist-gray}{cmyk}{0.2,0,0,0.8}
+\fi
 
 \hypersetup{colorlinks,
 	linkcolor	= {ist-cyan},
