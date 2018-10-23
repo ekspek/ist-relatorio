@@ -1,18 +1,19 @@
 % ---------------- Identification ----------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ist-report}[2018/10/20 v.0.2.1 Unofficial IST ULisboa generic report class]
+\ProvidesClass{ist-report}[2018/10/20 v.0.3.0 Unofficial IST ULisboa generic report class]
 
 % ----------------- Initial Code -----------------
-\newif\if@palatino
-\newif\if@portuguese
-\newif\if@english
-\newif\if@blackandwhite
+\RequirePackage{etoolbox}
+\newbool{@palatino}
+\newbool{@portuguese}
+\newbool{@english}
+\newbool{@blackandwhite}
 
 % ------------ Declaration of Options ------------
-\DeclareOption{palatino}{\@palatinotrue}
-\DeclareOption{portuguese}{\@portuguesetrue\@englishfalse}
-\DeclareOption{english}{\@englishtrue\@portuguesefalse}
-\DeclareOption{bw}{\@blackandwhitetrue}
+\DeclareOption{palatino}{\booltrue{@palatino}}
+\DeclareOption{portuguese}{\booltrue{@portuguese}}
+\DeclareOption{english}{\booltrue{@english}}
+\DeclareOption{bw}{\booltrue{@blackandwhite}}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 
 % ------------- Execution of Options -------------
@@ -25,56 +26,55 @@
 \RequirePackage{ifxetex}
 \RequirePackage{ifpdf}
 
-\ifxetex
+\ifbool{xetex}{
 	\RequirePackage{polyglossia}
-	\if@portuguese
-		\setmainlanguage{portuges}
-		\setotherlanguage[variant = british]{english}
-	\fi\if@english
+	\ifbool{@english}{
 		\setmainlanguage[variant = british]{english}
 		\setotherlanguage{portuges}
-	\fi
-\else
-	\if@portuguese
-		\RequirePackage[portuguese]{babel}
-	\fi
-	\if@english
+	}{
+		\setmainlanguage{portuges}
+		\setotherlanguage[variant = british]{english}
+	}
+}{
+	\ifbool{@portuguese}{
 		\RequirePackage[english]{babel}
-	\fi
-\fi
+	}{
+		\RequirePackage[portuguese]{babel}
+	}
+}
 
 \RequirePackage{mathtools}
 \RequirePackage[bottom]{footmisc}
 
-\ifxetex
+\ifbool{xetex}{
 	\RequirePackage[xetex]{geometry}
 	\RequirePackage[xetex]{graphicx}
 	\RequirePackage[xetex]{hyperref}
 	\RequirePackage{fontspec}
 	\defaultfontfeatures{Ligatures = TeX}
-\else
-	\ifpdf
+}{
+	\ifbool{pdf}{
 		\RequirePackage[utf8]{inputenc}
 		\RequirePackage[T1]{fontenc}
 		\RequirePackage[pdftex]{geometry}
 		\RequirePackage[pdftex]{graphicx}
 		\RequirePackage[pdftex]{hyperref}
-	\else
+	}{
 		\RequirePackage[dvips]{geometry}
 		\RequirePackage[dvips]{graphicx}
 		\RequirePackage[hypertex]{hyperref}
-	\fi
-\fi
+	}
+}
 
 \RequirePackage{microtype}
 
-\if@palatino
+\ifbool{@palatino}{
 	\RequirePackage{newpxtext}
 	\RequirePackage{eulervm}
 	\RequirePackage{nimbusmono}
-\else
+}{
 	\RequirePackage{lmodern}
-\fi
+}
 
 \RequirePackage{xcolor}
 
@@ -83,17 +83,17 @@
 \RequirePackage{caption}
 
 % ------------------ Main Code -------------------
-\if@portuguese
-	\def\@title{Título de Exemplo}
-	\def\@subtitle{Subtítulo de Exemplo}
-	\def\@subject{Disciplina de Exemplo}
-	\def\@course{Curso de Exemplo}
-\fi\if@english
-	\def\@title{Sample Title}
-	\def\@subtitle{Sample Subtitle}
-	\def\@subject{Sample Course}
-	\def\@course{Sample Degree}
-\fi
+\ifbool{@english}{
+	\csdef{@title}{Sample Title}
+	\csdef{@subtitle}{Sample Subtitle}
+	\csdef{@subject}{Sample Course}
+	\csdef{@course}{Sample Degree}
+}{
+	\csdef{@title}{Título de Exemplo}
+	\csdef{@subtitle}{Subtítulo de Exemplo}
+	\csdef{@subject}{Disciplina de Exemplo}
+	\csdef{@course}{Curso de Exemplo}
+}
 \def\@institution{Instituto Superior Técnico}
 \def\@groupno{0}
 
@@ -103,30 +103,44 @@
 \newcommand*\course[1]{\def\@course{#1}}
 \newcommand*\groupno[1]{\def\@groupno{#1}}
 
-\graphicspath{{graphics/}}
-
-\geometry{a4paper, nomarginpar,
+\geometry{a4paper,
 	tmargin = 2.5cm,
 	bmargin = 2.5cm,
 	lmargin = 2.5cm,
 	rmargin = 2.5cm}
 
-\if@blackandwhite
+\ifbool{@twoside}{
+	\geometry{twoside}
+}{
+	\geometry{nomarginpar}
+}
+
+\ifbool{@blackandwhite}{
 	\definecolor{ist-cyan}{cmyk}{1,1,1,1}
 	\definecolor{ist-gray}{cmyk}{1,1,1,1}
-\else
+}{
 	\definecolor{ist-cyan}{cmyk}{1,0,0,0}
 	\definecolor{ist-gray}{cmyk}{0.2,0,0,0.8}
-\fi
+}
 
 \hypersetup{colorlinks,
 	linkcolor	= {ist-cyan},
 	citecolor	= {ist-gray},
 	urlcolor	= {ist-cyan}}
 
+\graphicspath{{graphics/}}
+
 \fancyhf{}
 \pagestyle{fancy}
-\fancyhead[R]{\@title}
-\fancyfoot[R]{\huge \raisebox{-5pt}{\includegraphics[height = 20pt]{IST_C_CMYK_NEG_CROPPED}} \hspace*{2pt} \vrule{} \hspace*{2pt} \thepage{}}
 \renewcommand\headrulewidth{0.2pt}
 \renewcommand\footrulewidth{0pt}
+\ifbool{@twoside}{
+	\fancyhead[RO,LE]{\textsc{\@title}}
+	\fancyfoot[RO]{\LARGE \raisebox{-5pt}{\includegraphics[height = 18pt]{IST_C_CMYK_NEG_CROPPED}} \hspace*{2pt} \vrule{} \hspace*{2pt} \thepage{}}
+	\fancyfoot[LE]{\LARGE \thepage{} \hspace*{2pt} \vrule{} \hspace*{2pt} \raisebox{-4pt}{\includegraphics[height = 18pt]{IST_C_CMYK_NEG_CROPPED}}}
+	\renewcommand\headrulewidth{0.2pt}
+	\renewcommand\footrulewidth{0pt}
+}{
+	\fancyhead[R]{\textsc{\@title}}
+	\fancyfoot[R]{\LARGE \raisebox{-5pt}{\includegraphics[height = 18pt]{IST_C_CMYK_NEG_CROPPED}} \hspace*{2pt} \vrule{} \hspace*{2pt} \thepage{}}
+}

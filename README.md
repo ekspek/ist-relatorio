@@ -6,6 +6,7 @@ Relatório de exemplo para alunos do Instituto Superior Técnico. Este projecto 
 
 * ~~Criar uma classe separada do ficheiro .tex principal.~~
 * Criar capa
+* Implementar mais cores
 * Remover os logótipos pré-release, criar placeholders, implementar pdfcrop
 * Criar makefile
 * Implementar as opções listadas
@@ -18,12 +19,14 @@ De início não vão ser implementadas muitas opções, em vez aderindo a um est
 
 * Tipo de letra
 * Português / inglês
+* Cores / preto e branco
+* Um / dois lados
 
 ### A Implementar
 
-* Cores / preto e branco
 * Com / sem capa / variações de capa
 * Estilo de cabeçalho / rodapé
+* Arial para secções (maybe?)
 * Versão minted, check de instalações
 * Versão IST purista (Arial, margens pré-definidas, outros detalhes)
 

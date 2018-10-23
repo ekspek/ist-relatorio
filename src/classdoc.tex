@@ -13,8 +13,9 @@ This section is the most relevant for the class file itself, what it exactly con
 
 I'm still settling on a way to represent packages, descriptions and links. Until then, they're all listed here in an \texttt{itemize} environment.
 \begin{itemize}
+	\item \package{etoolbox}
 	\item \package{mathtools}
-	\item \package{babel [portuguese, english]}
+	\item \package{polyglossia [portuguese, english]}
 	\item \package{geometry [xetex]}
 	\item \package{graphicx [xetex]}
 	\item \package{hyperref [xetex]}
@@ -35,6 +36,7 @@ The class file is based off of the \LaTeX{} basic \package{article} class, edite
 
 \begin{description}
 	\item[V0.1.0] First working release. Included header and footer, \SI{2.5}{\centi\meter} margins. Implemented \package{palatino} option to separate font choices (default is \package{lmodern}), implemented \TeX{} conditionals to detect \package{XeTeX} or \package{pdfTeX}.
-	\item[V0.2.0] Implemented \package{portuguese} and \package{english} options to change report macro language, included IST colors and applied them to \package{hyperref}. Option \package{portuguese} runs by default and doesn't need to be included.
-	\item[V0.2.1] Implemented black and white option (except logos), added IST logo crop margins.
+	\item[V0.2.0] Added \package{portuguese} and \package{english} options to change report macro language, included IST colors and applied them to \package{hyperref}. Option \package{portuguese} runs by default and doesn't need to be included.
+	\item[V0.2.1] Added black and white option (except logos), added IST logo crop margins.
+	\item[V0.3.0] Reworked \package{twoside} option to work with already implemented features. Implemented \package{etoolbox} package for \TeX{} conditionals.
 \end{description}
