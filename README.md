@@ -7,9 +7,12 @@ Relatório de exemplo para alunos do Instituto Superior Técnico. Este projecto 
 * ~~Criar uma classe separada do ficheiro .tex principal.~~
 * Criar capa
 * Implementar mais cores
-* Remover os logótipos pré-release, criar placeholders, implementar pdfcrop
-* Criar makefile
+* Implementar bibliografia
 * Implementar as opções listadas
+* Definir convenções utilizadas para siunitx
+* Criar makefile
+* Comentar class file
+* Remover os logótipos pré-release, criar placeholders, implementar pdfcrop
 
 ## Opções
 
@@ -25,9 +28,10 @@ De início não vão ser implementadas muitas opções, em vez aderindo a um est
 ### A Implementar
 
 * Com / sem capa / variações de capa
-* Estilo de cabeçalho / rodapé
+* Mais que um estilo de cabeçalho / rodapé
+** Escudo com número de página?
 * Arial para secções (maybe?)
-* Versão minted, check de instalações
+* ~~Versão minted, check de instalações~~ (deixar isto para o utilizador)
 * Versão IST purista (Arial, margens pré-definidas, outros detalhes)
 
 ## Referências
