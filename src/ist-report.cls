@@ -1,6 +1,6 @@
 % ---------------- Identification ----------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ist-report}[2018/10/20 v.0.3.0 Unofficial IST ULisboa generic report class]
+\ProvidesClass{ist-report}[2018/10/20 v.0.4.0 Unofficial IST ULisboa generic report class]
 
 % ----------------- Initial Code -----------------
 \RequirePackage{etoolbox}
@@ -83,26 +83,7 @@
 \RequirePackage{caption}
 
 % ------------------ Main Code -------------------
-\ifbool{@english}{
-	\csdef{@title}{Sample Title}
-	\csdef{@subtitle}{Sample Subtitle}
-	\csdef{@subject}{Sample Course}
-	\csdef{@course}{Sample Degree}
-}{
-	\csdef{@title}{Título de Exemplo}
-	\csdef{@subtitle}{Subtítulo de Exemplo}
-	\csdef{@subject}{Disciplina de Exemplo}
-	\csdef{@course}{Curso de Exemplo}
-}
-\def\@institution{Instituto Superior Técnico}
-\def\@groupno{0}
-
-\renewcommand*\title[1]{\def\@title{#1}}
-\newcommand*\subtitle[1]{\def\@subtitle{#1}}
-\newcommand*\subject[1]{\def\@subject{#1}}
-\newcommand*\course[1]{\def\@course{#1}}
-\newcommand*\groupno[1]{\def\@groupno{#1}}
-
+%  == Setup ==
 \geometry{a4paper,
 	tmargin = 2.5cm,
 	bmargin = 2.5cm,
@@ -130,17 +111,68 @@
 
 \graphicspath{{graphics/}}
 
+%  == Commands and customizations ==
+\ifbool{@english}{
+	\csdef{@title}{Sample Title}
+	\csdef{@subject}{Something Systems}
+	\csdef{@course}{Bachelor's Degree in Sample Engineering}
+}{
+	\csdef{@title}{Título de Exemplo}
+	\csdef{@subject}{Disciplina de Exemplo}
+	\csdef{@course}{Curso de Exemplo}
+}
+\def\@institution{Instituto Superior Técnico}
+\def\@groupno{0}
+
+\renewcommand*\title[1]{\csdef{@title}{#1}}
+\newcommand*\subtitle[1]{\csdef{@subtitle}{#1}}
+\newcommand*\subject[1]{\csdef{@subject}{#1}}
+\newcommand*\course[1]{\csdef{@course}{#1}}
+\newcommand*\groupno[1]{\csdef{@groupno}{#1}}
+
+\newrobustcmd\makecover{
+	\begin{titlepage}
+	
+	\begin{center}
+		\vspace*{0.1\textheight}
+		\includegraphics[width = 0.4\linewidth, trim = {171.76pt 202pt 171.76pt 202pt}, clip]{NMP_A_CMYK_POS}
+		%\includegraphics[trim = {171.76pt 202pt 171.76pt 202pt}, clip]{IST_A_CMYK_POS}
+		%\includegraphics[trim = {93.13pt 218.93pt 93.13pt 218.93pt}, clip]{IST_C_CMYK_POS}
+		
+		\vspace*{0.1\textheight}
+% 		\vspace{\fill}
+		{\huge\bfseries\@title}
+		
+		\vspace*{0.01\textheight}
+		\ifcsdef{@subtitle}{\Large\@subtitle}{}
+		
+		\vspace*{3.5mm}
+		{\Large \begin{tabular}[t]{c}\@author\end{tabular}}
+		
+		\vspace{\fill}
+		{\large \@subject}
+		
+		\vspace*{0.01\textheight}
+		{\Large \@course}
+		
+		\vspace*{0.01\textheight}
+		{\large \@institution}
+	\end{center}
+	
+	\end{titlepage}
+}
+
 \fancyhf{}
 \pagestyle{fancy}
 \renewcommand\headrulewidth{0.2pt}
 \renewcommand\footrulewidth{0pt}
 \ifbool{@twoside}{
 	\fancyhead[RO,LE]{\textsc{\@title}}
-	\fancyfoot[RO]{\LARGE \raisebox{-5pt}{\includegraphics[height = 18pt]{IST_C_CMYK_NEG_CROPPED}} \hspace*{2pt} \vrule{} \hspace*{2pt} \thepage{}}
-	\fancyfoot[LE]{\LARGE \thepage{} \hspace*{2pt} \vrule{} \hspace*{2pt} \raisebox{-4pt}{\includegraphics[height = 18pt]{IST_C_CMYK_NEG_CROPPED}}}
+	\fancyfoot[RO]{\LARGE \raisebox{-5pt}{\includegraphics[height = 18pt, trim = {93.13pt 218.93pt 93.13pt 218.93pt}, clip]{NMP_C_CMYK_NEG}} \hspace*{2pt} \vrule{} \hspace*{2pt} \thepage{}}
+	\fancyfoot[LE]{\LARGE \thepage{} \hspace*{2pt} \vrule{} \hspace*{2pt} \raisebox{-4pt}{\includegraphics[height = 18pt, trim = {93.13pt 218.93pt 93.13pt 218.93pt}, clip]{NMP_C_CMYK_NEG}}}
 	\renewcommand\headrulewidth{0.2pt}
 	\renewcommand\footrulewidth{0pt}
 }{
 	\fancyhead[R]{\textsc{\@title}}
-	\fancyfoot[R]{\LARGE \raisebox{-5pt}{\includegraphics[height = 18pt]{IST_C_CMYK_NEG_CROPPED}} \hspace*{2pt} \vrule{} \hspace*{2pt} \thepage{}}
+	\fancyfoot[R]{\LARGE \raisebox{-5pt}{\includegraphics[height = 18pt, trim = {93.13pt 218.93pt 93.13pt 218.93pt}, clip]{NMP_C_CMYK_NEG}} \hspace*{2pt} \vrule{} \hspace*{2pt} \thepage{}}
 }
