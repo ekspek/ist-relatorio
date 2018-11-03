@@ -1,0 +1,14 @@
+\fancyhf{}
+\pagestyle{fancy}
+\renewcommand\headrulewidth{0.2pt}
+\renewcommand\footrulewidth{0pt}
+\ifbool{@twoside}{
+	\fancyhead[RO,LE]{\textsc{\@title}}
+	\fancyfoot[RO]{\LARGE \raisebox{-5pt}{\includegraphics[height = 18pt, trim = {93.13pt 218.93pt 93.13pt 218.93pt}, clip]{NMP_C_CMYK_NEG}} \hspace*{2pt} \vrule{} \hspace*{2pt} \thepage{}}
+	\fancyfoot[LE]{\LARGE \thepage{} \hspace*{2pt} \vrule{} \hspace*{2pt} \raisebox{-4pt}{\includegraphics[height = 18pt, trim = {93.13pt 218.93pt 93.13pt 218.93pt}, clip]{NMP_C_CMYK_NEG}}}
+	\renewcommand\headrulewidth{0.2pt}
+	\renewcommand\footrulewidth{0pt}
+}{
+	\fancyhead[R]{\textsc{\@title}}
+	\fancyfoot[R]{\LARGE \raisebox{-5pt}{\includegraphics[height = 18pt, trim = {93.13pt 218.93pt 93.13pt 218.93pt}, clip]{NMP_C_CMYK_NEG}} \hspace*{2pt} \vrule{} \hspace*{2pt} \thepage{}}
+}
