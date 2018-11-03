@@ -130,49 +130,5 @@
 \newcommand*\course[1]{\csdef{@course}{#1}}
 \newcommand*\groupno[1]{\csdef{@groupno}{#1}}
 
-\newrobustcmd\makecover{
-	\begin{titlepage}
-	
-	\begin{center}
-		\vspace*{0.1\textheight}
-		\includegraphics[width = 0.4\linewidth, trim = {171.76pt 202pt 171.76pt 202pt}, clip]{NMP_A_CMYK_POS}
-		%\includegraphics[trim = {171.76pt 202pt 171.76pt 202pt}, clip]{IST_A_CMYK_POS}
-		%\includegraphics[trim = {93.13pt 218.93pt 93.13pt 218.93pt}, clip]{IST_C_CMYK_POS}
-		
-		\vspace*{0.1\textheight}
-% 		\vspace{\fill}
-		{\huge\bfseries\@title}
-		
-		\vspace*{0.01\textheight}
-		\ifcsdef{@subtitle}{\Large\@subtitle}{}
-		
-		\vspace*{3.5mm}
-		{\Large \begin{tabular}[t]{c}\@author\end{tabular}}
-		
-		\vspace{\fill}
-		{\large \@subject}
-		
-		\vspace*{0.01\textheight}
-		{\Large \@course}
-		
-		\vspace*{0.01\textheight}
-		{\large \@institution}
-	\end{center}
-	
-	\end{titlepage}
-}
-
-\fancyhf{}
-\pagestyle{fancy}
-\renewcommand\headrulewidth{0.2pt}
-\renewcommand\footrulewidth{0pt}
-\ifbool{@twoside}{
-	\fancyhead[RO,LE]{\textsc{\@title}}
-	\fancyfoot[RO]{\LARGE \raisebox{-5pt}{\includegraphics[height = 18pt, trim = {93.13pt 218.93pt 93.13pt 218.93pt}, clip]{NMP_C_CMYK_NEG}} \hspace*{2pt} \vrule{} \hspace*{2pt} \thepage{}}
-	\fancyfoot[LE]{\LARGE \thepage{} \hspace*{2pt} \vrule{} \hspace*{2pt} \raisebox{-4pt}{\includegraphics[height = 18pt, trim = {93.13pt 218.93pt 93.13pt 218.93pt}, clip]{NMP_C_CMYK_NEG}}}
-	\renewcommand\headrulewidth{0.2pt}
-	\renewcommand\footrulewidth{0pt}
-}{
-	\fancyhead[R]{\textsc{\@title}}
-	\fancyfoot[R]{\LARGE \raisebox{-5pt}{\includegraphics[height = 18pt, trim = {93.13pt 218.93pt 93.13pt 218.93pt}, clip]{NMP_C_CMYK_NEG}} \hspace*{2pt} \vrule{} \hspace*{2pt} \thepage{}}
-}
+\input{covers}
+\input{pagestyles}

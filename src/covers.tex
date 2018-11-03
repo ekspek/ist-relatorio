@@ -1,0 +1,31 @@
+\newrobustcmd\makecover{
+	\begin{titlepage}
+	
+	\begin{center}
+		\vspace*{0.1\textheight}
+		\includegraphics[width = 0.4\linewidth, trim = {171.76pt 202pt 171.76pt 202pt}, clip]{NMP_A_CMYK_POS}
+		%\includegraphics[trim = {171.76pt 202pt 171.76pt 202pt}, clip]{IST_A_CMYK_POS}
+		%\includegraphics[trim = {93.13pt 218.93pt 93.13pt 218.93pt}, clip]{IST_C_CMYK_POS}
+		
+		\vspace*{0.1\textheight}
+% 		\vspace{\fill}
+		{\huge\bfseries\@title}
+		
+		\vspace*{0.01\textheight}
+		\ifcsdef{@subtitle}{\Large\@subtitle}{}
+		
+		\vspace*{3.5mm}
+		{\Large \begin{tabular}[t]{c}\@author\end{tabular}}
+		
+		\vspace{\fill}
+		{\large \@subject}
+		
+		\vspace*{0.01\textheight}
+		{\Large \@course}
+		
+		\vspace*{0.01\textheight}
+		{\large \@institution}
+	\end{center}
+	
+	\end{titlepage}
+}
