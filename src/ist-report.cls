@@ -69,7 +69,7 @@
 \RequirePackage{microtype}
 
 \ifbool{@palatino}{
-	\RequirePackage{newpxtext}
+	\RequirePackage[osf]{newpxtext}
 	\RequirePackage{eulervm}
 	\RequirePackage{nimbusmono}
 }{
