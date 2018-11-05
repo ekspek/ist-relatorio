@@ -11,7 +11,7 @@
 
 \begin{center}
 	\vspace{15mm}
-	\includegraphics[width = 0.7\linewidth, trim = {171.76pt 202pt 171.76pt 202pt}, clip]{IST_A_CMYK_POS}%{93.13pt 218.93pt 93.13pt 218.93pt}
+	\includegraphics[width = 0.7\linewidth, trim = {171.76pt 202pt 171.76pt 202pt}, clip]{IST_A_CMYK_POS}
 	
 	{\large Instituto Superior Técnico}\\
 	
@@ -23,10 +23,6 @@
 \end{center}
 
 \pagebreak
-
-% Define a lot of characteristics like number commas and exponencials of base 10 and unit representations and stuff
-% Also a tree of what happens with which compilers are used, options and whatnot
-% Document the TUDelft class file based on the blocks I just defined on the tudelft-report-commented.cls file
 
 {\hypersetup{linkcolor = black} \tableofcontents}
 
@@ -175,7 +171,7 @@ A basic Ti\textit{k}Z drawing of a tall box can be found in figure \ref{fig:tikz
 The objective is to have any code content use the \package{minted} package to typeset code. However, due to the high number of requirements to properly run \package{minted} on a local installation of \TeX{}, this option should only be used with an online editor (\textit{Overleaf} comes as the most prominent example). In any case, for the time being \package{minted} is included in this template, but can be further on replaced with a package like \package{listings}, possibly using a class option. Plans are also down to include a tutorial on how to check and install \package{minted} and get it to work.
 
 Here is a basic excerpt of a basic C \textit{Hello World} program.
-\begin{minted}[frame = lines, linenos]{c}
+\begin{minted}{c}
 #include <stdio.h>
 
 int main(void)
