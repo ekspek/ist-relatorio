@@ -71,15 +71,14 @@
 \ifbool{@palatino}{
 	\RequirePackage[osf]{newpxtext}
 	\RequirePackage{eulervm}
-	\RequirePackage{nimbusmono}
+	\RequirePackage[scaled = 1.05]{nimbusmononarrow}
 }{
 	\RequirePackage{lmodern}
 }
 
 \RequirePackage{xcolor}
-
+\RequirePackage{metalogo}
 \RequirePackage{fancyhdr}
-
 \RequirePackage{caption}
 
 % ------------------ Main Code -------------------
