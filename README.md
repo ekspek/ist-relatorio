@@ -26,7 +26,8 @@ Para compilar um documento em LaTeX com esta classe, só é necessário fazer do
 * Definir convenções utilizadas para siunitx
 * Criar makefile
 * Comentar class file
-* Remover os logótipos pré-release, ~~criar placeholders, implementar pdfcrop~~
+* Reestruturar repo, ~~remover pasta `doc`~~
+* ~~Remover os logótipos pré-release, criar placeholders, implementar pdfcrop~~
 * Adicionar exemplos diferentes
 * Obter licença LaTeX Project Public License
 

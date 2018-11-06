@@ -36,9 +36,10 @@ The class file is based off of the \LaTeX{} basic \package{article} class, edite
 \subsection{Changelog}
 
 \begin{description}
-	\item[V0.1.0] First working release. Included header and footer, \SI{2.5}{\centi\meter} margins. Implemented \package{palatino} option to separate font choices (default is \package{lmodern}), implemented \TeX{} conditionals to detect \package{XeTeX} or \package{pdfTeX}.
+	\item[V0.1.0] First working release. Included header and footer, \SI{2.5}{\centi\meter} margins. Implemented \package{palatino} option to separate font choices (default is \package{lmodern}), implemented \TeX{} conditionals to detect \XeTeX{} or pdf\TeX{}.
 	\item[V0.2.0] Added \package{portuguese} and \package{english} options to change report macro language, included IST colors and applied them to \package{hyperref}. Option \package{portuguese} runs by default and doesn't need to be included.
 	\item[V0.2.1] Added black and white option (except logos), added IST logo crop margins.
 	\item[V0.3.0] Reworked \package{twoside} option to work with already implemented features. Implemented \package{etoolbox} package for \TeX{} conditionals.
 	\item[V0.4.0] Added the \verb|\makecover| command with a simple cover example. Added the first version of the placeholder logos.
+	\item[V0.5.0] Separated covers and header and footer styles into separate files (might undo later for release). Headers and footers are now bound to the \verb|\pagestyle| command. By default, the \package{default} page style is loaded. Fixed wrong IST logo crops.
 \end{description}

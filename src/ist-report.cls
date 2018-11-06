@@ -1,6 +1,6 @@
 % ---------------- Identification ----------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ist-report}[2018/10/20 v.0.4.0 Unofficial IST ULisboa generic report class]
+\ProvidesClass{ist-report}[2018/10/20 v.0.5.0 Unofficial IST ULisboa generic report class]
 
 % ----------------- Initial Code -----------------
 \RequirePackage{etoolbox}
@@ -131,3 +131,4 @@
 
 \input{covers}
 \input{pagestyles}
+\pagestyle{default}
