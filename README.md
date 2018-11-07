@@ -7,50 +7,22 @@ Relatório de exemplo para alunos do Instituto Superior Técnico. Este projecto 
 Para compilar um documento em LaTeX com esta classe, só é necessário fazer download do ficheiro `ist-report.cls`.
 1. Colocar o ficheiro `ist-report.cls` na mesma pasta que o documento `.tex` a compilar;
 2. Incluir a linha abaixo no início do ficheiro;
-```
+````
 \documentclass{ist-report}
 ````
    - Opções podem ser incluídas entre parênteses retos entre `\documentclass` e `{ist-report}`, como no exemplo seguinte. As opções utilizáveis encontram-se na documentação.
-```
+````
 \documentclass[english]{ist-report}
 ````
 3. Compilar o documento.
 
-## To-do
-
-* ~~Criar uma classe separada do ficheiro .tex principal.~~
-* Criar capa
-* Implementar mais cores
-* Implementar bibliografia
-* Implementar as opções listadas
-* Definir convenções utilizadas para siunitx
-* Criar makefile
-* Comentar class file
-* Reestruturar repo, ~~remover pasta `doc`~~
-* ~~Remover os logótipos pré-release, criar placeholders, implementar pdfcrop~~
-* Adicionar exemplos diferentes
-* Obter licença LaTeX Project Public License
-
-## Opções
-
-De início não vão ser implementadas muitas opções, em vez aderindo a um estilo pré-definido que funcione em conjunção com a classe. À medida que o projeto progride serão implementadas não só opções adicionais como variantes de capas e estilos de páginas.
-
-### Implementadas
+## Opções Implementadas
 
 * Tipo de letra
 * Português / inglês
 * Cores / preto e branco
 * Um / dois lados
-
-### A Implementar
-
-* Com / sem capa / variações de capa
-* Mais que um estilo de cabeçalho / rodapé
-  * Escudo em TikZ com número de página?
-* Arial para secções (maybe?)
-* ~~Versão minted, check de instalações~~ (deixar isto para o utilizador)
-* Versão IST purista (Arial, margens pré-definidas, outros detalhes)
-  * Conseguido este objetivo, o repo vai a público
+* Diferentes estilos de cabeçalho / rodapé
 
 ## Referências
 
