@@ -19,3 +19,6 @@ src/_minted-main/
 
 # pdf output files
 src/*.pdf
+
+# To-do list
+TODO.md

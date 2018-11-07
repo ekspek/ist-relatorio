@@ -1,6 +1,6 @@
 % ---------------- Identification ----------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ist-report}[2018/10/20 v.0.5.0 Unofficial IST ULisboa generic report class]
+\ProvidesClass{ist-report}[2018/10/20 v.0.5.1 Unofficial IST ULisboa generic report class]
 
 % ----------------- Initial Code -----------------
 \RequirePackage{etoolbox}
@@ -8,12 +8,14 @@
 \newbool{@portuguese}
 \newbool{@english}
 \newbool{@blackandwhite}
+\newbool{@basic}
 
 % ------------ Declaration of Options ------------
 \DeclareOption{palatino}{\booltrue{@palatino}}
 \DeclareOption{portuguese}{\booltrue{@portuguese}}
 \DeclareOption{english}{\booltrue{@english}}
 \DeclareOption{bw}{\booltrue{@blackandwhite}}
+\DeclareOption{basic}{\booltrue{@basic}}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 
 % ------------- Execution of Options -------------
@@ -22,6 +24,8 @@
 
 % --------------- Package Loading ----------------
 \LoadClass{article}
+
+\RequirePackage{mathtools}
 
 \RequirePackage{ifxetex}
 \RequirePackage{ifpdf}
@@ -43,9 +47,6 @@
 	}
 }
 
-\RequirePackage{mathtools}
-\RequirePackage[bottom]{footmisc}
-
 \ifbool{xetex}{
 	\RequirePackage[xetex]{geometry}
 	\RequirePackage[xetex]{graphicx}
@@ -66,6 +67,9 @@
 	}
 }
 
+\ifbool{@basic}{\RequirePackage{lmodern}\endinput}{}
+% == Basic option ends here ==
+
 \RequirePackage{microtype}
 
 \ifbool{@palatino}{
@@ -79,9 +83,12 @@
 \RequirePackage{xcolor}
 \RequirePackage{metalogo}
 \RequirePackage{fancyhdr}
+\RequirePackage[bottom]{footmisc}
 \RequirePackage{caption}
+\RequirePackage{tikz}
 
 % ------------------ Main Code -------------------
+
 %  == Setup ==
 \geometry{a4paper,
 	tmargin = 2.5cm,
@@ -89,11 +96,7 @@
 	lmargin = 2.5cm,
 	rmargin = 2.5cm}
 
-\ifbool{@twoside}{
-	\geometry{twoside}
-}{
-	\geometry{nomarginpar}
-}
+\ifbool{@twoside}{\geometry{twoside}}{\geometry{nomarginpar}}
 
 \ifbool{@blackandwhite}{
 	\definecolor{ist-cyan}{cmyk}{1,1,1,1}

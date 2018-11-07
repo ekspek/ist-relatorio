@@ -26,3 +26,32 @@
 		\fancyfoot[C]{- \hspace*{2pt}\thepage \hspace*{2pt} -}
 	}
 }
+
+\fancypagestyle{style2}{
+	\fancyhf{}
+	\renewcommand\headrulewidth{0.pt}
+	\renewcommand\footrulewidth{0pt}
+	\fancyfoot[C]{\raisebox{-8.55pt}{
+		% Set variable size depending on page number if possible (or set as node)
+		\begin{tikzpicture}[x = 0.053cm, y = 0.05367cm]
+			\coordinate (c1) at (0,0); % Redo setting (0,0) to the south anchor of the text node
+			\coordinate (c2) at (11,0);
+			\coordinate (c3) at (11,-5);
+			\coordinate (c4) at (5.5,-13);
+			\coordinate (c5) at (0,-5);
+			\coordinate (center) at (5.5,-6.5); % Set using relative positioning
+			\coordinate (text) at (5.5,-5.5); % Set relative to (center)
+			%\fill [color = {black!80!white}] (c1) to (c2) to (c3) to [out = -90, in = 30] (c4) to [out = 150, in = -90] (c5) to cycle;
+			%\node (pageno) at (text) [align = center] {\color{white} \textbf \thepage};
+			\draw [thin, color = {black}] (c1) to (c2) to (c3) to [out = -90, in = 30] (c4) to [out = 150, in = -90] (c5) to cycle;
+			\node (pageno) at (text) [align = center] {\thepage};
+		\end{tikzpicture}}
+	}
+	\ifbool{@twoside}{
+		\fancyhead[LO,RE]{\scshape \@institution}
+		\fancyhead[RO,LE]{\scshape \@title}
+	}{
+		\fancyhead[L]{\scshape \@institution}
+		\fancyhead[R]{\scshape \@title}
+	}
+}
