@@ -22,3 +22,7 @@ src/*.pdf
 
 # To-do list
 TODO.md
+
+# Generic auxiliary files
+*.*~
+*.swp
