@@ -1,6 +1,6 @@
 % ---------------- Identification ----------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ist-report}[2018/10/20 v.0.5.1 Unofficial IST ULisboa generic report class]
+\ProvidesClass{ist-report}[2018/10/20 v.0.6.0 Unofficial IST ULisboa generic report class]
 
 % ----------------- Initial Code -----------------
 \RequirePackage{etoolbox}
@@ -9,6 +9,7 @@
 \newbool{@english}
 \newbool{@blackandwhite}
 \newbool{@basic}
+\newbool{@purist}
 
 % ------------ Declaration of Options ------------
 \DeclareOption{palatino}{\booltrue{@palatino}}
@@ -16,6 +17,7 @@
 \DeclareOption{english}{\booltrue{@english}}
 \DeclareOption{bw}{\booltrue{@blackandwhite}}
 \DeclareOption{basic}{\booltrue{@basic}}
+\DeclareOption{purist}{\booltrue{@purist}}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 
 % ------------- Execution of Options -------------
@@ -72,13 +74,30 @@
 
 \RequirePackage{microtype}
 
-\ifbool{@palatino}{
-	\RequirePackage[osf]{newpxtext}
-	\RequirePackage{eulervm}
-	\RequirePackage[scaled = 1.05]{nimbusmononarrow}
+\ifbool{@purist}{
+	\ifbool{xetex}{
+		%\setmainfont{Arial}
+		\ClassWarning{ist-report}{
+			The 'purist' option is not supported\MessageBreak
+			for unicode compilers. To be added\MessageBreak
+			in the future.
+		}
+	}{
+		\RequirePackage[scaled = 0.92]{helvet}
+		\renewcommand{\familydefault}{\sfdefault}
+		%\usepackage[scaled = 1.05]{inconsolata}
+	}
 }{
-	\RequirePackage{lmodern}
+	\ifbool{@palatino}{
+		\RequirePackage[osf]{newpxtext}
+		\RequirePackage{eulervm}
+		\RequirePackage[scaled = 1.05]{nimbusmononarrow}
+	}{
+		\RequirePackage{lmodern}
+	}
 }
+
+\ifbool{xetex}{\boolfalse{@purist}}{}
 
 \RequirePackage{xcolor}
 \RequirePackage{metalogo}
@@ -95,6 +114,8 @@
 	bmargin = 2.5cm,
 	lmargin = 2.5cm,
 	rmargin = 2.5cm}
+
+\ifbool{@purist}{\renewcommand\baselinestretch{1.5}}
 
 \ifbool{@twoside}{\geometry{twoside}}{\geometry{nomarginpar}}
 
@@ -134,4 +155,8 @@
 
 \input{covers}
 \input{pagestyles}
-\pagestyle{default}
+\ifbool{@purist}{
+	\pagestyle{plain}
+}{
+	\pagestyle{default}
+}
