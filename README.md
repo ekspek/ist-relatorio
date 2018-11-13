@@ -24,7 +24,7 @@ Para compilar um documento em LaTeX com esta classe, só é necessário fazer do
 * Um / dois lados
 * Diferentes estilos de cabeçalho / rodapé
 * Modo `basic`
-  * Remove todas as alterações gráficas e retorna a classe *article* com definições do IST~~
+  * Remove todas as alterações gráficas e retorna a classe *article* com definições do IST
 
 ## Referências
 

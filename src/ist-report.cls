@@ -1,9 +1,40 @@
 % ---------------- Identification ----------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ist-report}[2018/10/20 v.0.6.0 Unofficial IST ULisboa generic report class]
+\ProvidesClass{ist-report}[2018/11/13 v.0.6.1 Unofficial IST report class]
 
 % ----------------- Initial Code -----------------
+\typeout{_______________________________________________}
+\typeout{_______________________________________________}
+\typeout{___`:::::::::::::::::::::::::::::::::::::::`___}
+\typeout{___.ooooooooooooooooooooooooooooooooooooooo`___}
+\typeout{___.oooooooooooooooooooo/://:/+oooooooooooo`___}
+\typeout{___.oooooooooooooooooo-`_:oo-_`-ooooooooooo`___}
+\typeout{___.ooooooooooooooooo/___+oo+___+oooooooooo`___}
+\typeout{___.ooooooooooooooooo/___+ooo+/+ooooooooooo`___}
+\typeout{___.oooooooooo+///ooo/___+o///////ooooooooo`___}
+\typeout{___.oooooooooo:___+oo/___+o.`___`.ooooooooo`___}
+\typeout{___.oooooooooo:___+oo/___+o+/___/+ooooooooo`___}
+\typeout{___.oooooooooo:___+oo/___+oo/___/oooooooooo`___}
+\typeout{___.oooooooooo:___+oo/___+oo/___/oooooooooo`___}
+\typeout{___`oooooooooo:___+oo/___+oo/___/oooooooooo____}
+\typeout{____+ooooooooo:___+oo/___+oo/___/ooooooooo+____}
+\typeout{____-ooooooooo:___+oo/___+oo/___/ooooooooo-____}
+\typeout{_____+oooooooo+///ooo/___+ooo///ooooooooo/_____}
+\typeout{_____.ooooooooo//+ooo/___+oooooooooooooo+`_____}
+\typeout{______.+oooooo/__`ooo/___+ooooooooooooo+`______}
+\typeout{_______`+ooooo+.`_/o+-_`:ooooooooooooo/`_______}
+\typeout{________`:oooooo+/:////oooooooooooooo:_________}
+\typeout{__________.+ooooooooooooooooooooooo/`__________}
+\typeout{____________-+ooooooooooooooooooo/.____________}
+\typeout{______________./ooooooooooooooo/.______________}
+\typeout{________________`:+ooooooooo+-`________________}
+\typeout{___________________.:+ooo+:.___________________}
+\typeout{______________________.-`______________________}
+\typeout{_______________________________________________}
+\typeout{_______________________________________________}
 \RequirePackage{etoolbox}
+\RequirePackage{ifxetex}
+\RequirePackage{ifpdf}
 \newbool{@palatino}
 \newbool{@portuguese}
 \newbool{@english}
@@ -29,10 +60,13 @@
 
 \RequirePackage{mathtools}
 
-\RequirePackage{ifxetex}
-\RequirePackage{ifpdf}
+\RequirePackage{geometry}
+\RequirePackage{graphicx}
+\RequirePackage{hyperref}
 
 \ifbool{xetex}{
+	\RequirePackage{fontspec}
+	\defaultfontfeatures{Ligatures = TeX}
 	\RequirePackage{polyglossia}
 	\ifbool{@english}{
 		\setmainlanguage[variant = british]{english}
@@ -42,30 +76,12 @@
 		\setotherlanguage[variant = british]{english}
 	}
 }{
-	\ifbool{@portuguese}{
-		\RequirePackage[english]{babel}
-	}{
+	\RequirePackage[utf8]{inputenc}
+	\RequirePackage[T1]{fontenc}
+	\ifbool{@english}{
 		\RequirePackage[portuguese]{babel}
-	}
-}
-
-\ifbool{xetex}{
-	\RequirePackage[xetex]{geometry}
-	\RequirePackage[xetex]{graphicx}
-	\RequirePackage[xetex]{hyperref}
-	\RequirePackage{fontspec}
-	\defaultfontfeatures{Ligatures = TeX}
-}{
-	\ifbool{pdf}{
-		\RequirePackage[utf8]{inputenc}
-		\RequirePackage[T1]{fontenc}
-		\RequirePackage[pdftex]{geometry}
-		\RequirePackage[pdftex]{graphicx}
-		\RequirePackage[pdftex]{hyperref}
 	}{
-		\RequirePackage[dvips]{geometry}
-		\RequirePackage[dvips]{graphicx}
-		\RequirePackage[hypertex]{hyperref}
+		\RequirePackage[english]{babel}
 	}
 }
 
@@ -74,14 +90,19 @@
 
 \RequirePackage{microtype}
 
+\ifbool{xetex}{
+	\boolfalse{@purist}
+	\ClassWarning{ist-report}{
+		The 'purist' option is not supported\MessageBreak
+		for unicode compilers. To be added\MessageBreak
+		in the future.
+	}
+}
+
 \ifbool{@purist}{
 	\ifbool{xetex}{
+		% Temporarily unavailable.
 		%\setmainfont{Arial}
-		\ClassWarning{ist-report}{
-			The 'purist' option is not supported\MessageBreak
-			for unicode compilers. To be added\MessageBreak
-			in the future.
-		}
 	}{
 		\RequirePackage[scaled = 0.92]{helvet}
 		\renewcommand{\familydefault}{\sfdefault}
@@ -96,8 +117,6 @@
 		\RequirePackage{lmodern}
 	}
 }
-
-\ifbool{xetex}{\boolfalse{@purist}}{}
 
 \RequirePackage{xcolor}
 \RequirePackage{metalogo}
@@ -135,23 +154,24 @@
 \graphicspath{{graphics/}}
 
 %  == Commands and customizations ==
+\def\@groupno{}
 \ifbool{@english}{
 	\csdef{@title}{Sample Title}
-	\csdef{@subject}{Something Systems}
+	\csdef{@subject}{Sample Subject}
 	\csdef{@course}{Bachelor's Degree in Sample Engineering}
+	\newcommand*\groupno[1]{\csdef{@groupno}{Group #1}}
 }{
 	\csdef{@title}{Título de Exemplo}
 	\csdef{@subject}{Disciplina de Exemplo}
 	\csdef{@course}{Curso de Exemplo}
+	\newcommand*\groupno[1]{\csdef{@groupno}{Grupo #1}}
 }
 \def\@institution{Instituto Superior Técnico}
-\def\@groupno{0}
 
 \renewcommand*\title[1]{\csdef{@title}{#1}}
 \newcommand*\subtitle[1]{\csdef{@subtitle}{#1}}
 \newcommand*\subject[1]{\csdef{@subject}{#1}}
 \newcommand*\course[1]{\csdef{@course}{#1}}
-\newcommand*\groupno[1]{\csdef{@groupno}{#1}}
 
 \input{covers}
 \input{pagestyles}
