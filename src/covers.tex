@@ -12,17 +12,18 @@
 		\vspace*{0.01\textheight}
 		\ifcsdef{@subtitle}{\Large\@subtitle}{}
 		
-		\vspace*{3.5mm}
-		{\Large \begin{tabular}[t]{c}\@author\end{tabular}}
+		\vspace*{0.3\textheight}
+		{\Large\begin{tabular}[t]{c}\@author\end{tabular}}
+		{\ifdefempty{\@groupno}{}{\vspace*{0.01\textheight}\\\@groupno}}
 		
 		\vspace{\fill}
 		{\large \@subject}
 		
 		\vspace*{0.01\textheight}
-		{\Large \@course}
+		{\Large\@course}
 		
 		\vspace*{0.01\textheight}
-		{\large \@institution}
+		{\large\@institution}
 	\end{center}
 	
 	\end{titlepage}

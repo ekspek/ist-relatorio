@@ -1,34 +1,5 @@
 \fancypagestyle{default}{
 	\fancyhf{}
-	\renewcommand\headrulewidth{0.2pt}
-	\renewcommand\footrulewidth{0pt}
-	\ifbool{@twoside}{
-		\fancyhead[LO,RE]{\scshape \@title}
-		\fancyfoot[LO]{\Large \thepage{} \hspace*{2pt} \vrule{} \hspace*{2pt} \raisebox{-4pt}{\includegraphics[height = 14pt, trim = {93.4pt 219.7pt 77pt 221.9pt}, clip]{IST_C_CMYK_NEG}}}
-		\fancyfoot[RE]{\Large \raisebox{-5pt}{\includegraphics[height = 14pt, trim = {93.4pt 219.7pt 77pt 221.9pt}, clip]{IST_C_CMYK_NEG}} \hspace*{2pt} \vrule{} \hspace*{2pt} \thepage{}}
-	}{
-		\fancyhead[R]{\scshape \@title}
-		\fancyfoot[R]{\Large \raisebox{-5pt}{\includegraphics[height = 14pt, trim = {93.4pt 219.7pt 77pt 221.9pt}, clip]{IST_C_CMYK_NEG}} \hspace*{2pt} \vrule{} \hspace*{2pt} \thepage{}}
-	}
-}
-
-\fancypagestyle{style1}{
-	\fancyhf{}
-	\renewcommand\headrulewidth{0.pt}
-	\renewcommand\footrulewidth{0pt}
-	\ifbool{@twoside}{
-		\fancyhead[LO,RE]{\scshape \@institution}
-		\fancyhead[RO,LE]{\scshape \@title}
-		\fancyfoot[C]{- \hspace*{2pt}\thepage \hspace*{2pt} -}
-	}{
-		\fancyhead[L]{\scshape \@institution}
-		\fancyhead[R]{\scshape \@title}
-		\fancyfoot[C]{- \hspace*{2pt}\thepage \hspace*{2pt} -}
-	}
-}
-
-\fancypagestyle{style2}{
-	\fancyhf{}
 	\renewcommand\headrulewidth{0.pt}
 	\renewcommand\footrulewidth{0pt}
 	\fancyfoot[C]{\raisebox{-8.55pt}{
@@ -53,5 +24,34 @@
 	}{
 		\fancyhead[L]{\scshape \@institution}
 		\fancyhead[R]{\scshape \@title}
+	}
+}
+
+\fancypagestyle{style1}{
+	\fancyhf{}
+	\renewcommand\headrulewidth{0.2pt}
+	\renewcommand\footrulewidth{0pt}
+	\ifbool{@twoside}{
+		\fancyhead[LO,RE]{\scshape \@title}
+		\fancyfoot[LO]{\Large \thepage{} \hspace*{2pt} \vrule{} \hspace*{2pt} \raisebox{-4pt}{\includegraphics[height = 14pt, trim = {93.4pt 219.7pt 77pt 221.9pt}, clip]{IST_C_CMYK_NEG}}}
+		\fancyfoot[RE]{\Large \raisebox{-5pt}{\includegraphics[height = 14pt, trim = {93.4pt 219.7pt 77pt 221.9pt}, clip]{IST_C_CMYK_NEG}} \hspace*{2pt} \vrule{} \hspace*{2pt} \thepage{}}
+	}{
+		\fancyhead[R]{\scshape \@title}
+		\fancyfoot[R]{\Large \raisebox{-5pt}{\includegraphics[height = 14pt, trim = {93.4pt 219.7pt 77pt 221.9pt}, clip]{IST_C_CMYK_NEG}} \hspace*{2pt} \vrule{} \hspace*{2pt} \thepage{}}
+	}
+}
+
+\fancypagestyle{style2}{
+	\fancyhf{}
+	\renewcommand\headrulewidth{0.pt}
+	\renewcommand\footrulewidth{0pt}
+	\ifbool{@twoside}{
+		\fancyhead[LO,RE]{\scshape \@institution}
+		\fancyhead[RO,LE]{\scshape \@title}
+		\fancyfoot[C]{- \hspace*{2pt}\thepage \hspace*{2pt} -}
+	}{
+		\fancyhead[L]{\scshape \@institution}
+		\fancyhead[R]{\scshape \@title}
+		\fancyfoot[C]{- \hspace*{2pt}\thepage \hspace*{2pt} -}
 	}
 }
