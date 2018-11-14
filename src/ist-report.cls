@@ -17,7 +17,7 @@
 
 % ---------------- Identification ----------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ist-report}[2018/11/13 v.0.6.1 Unofficial IST report class]
+\ProvidesClass{ist-report}[2018/11/13 v.0.6.2 Unofficial IST report class]
 
 % ----------------- Initial Code -----------------
 \typeout{_______________________________________________}
@@ -57,7 +57,6 @@
 \newbool{@portuguese}
 \newbool{@english}
 \newbool{@blackandwhite}
-\newbool{@basic}
 \newbool{@purist}
 
 % ------------ Declaration of Options ------------
@@ -65,7 +64,6 @@
 \DeclareOption{portuguese}{\booltrue{@portuguese}}
 \DeclareOption{english}{\booltrue{@english}}
 \DeclareOption{bw}{\booltrue{@blackandwhite}}
-\DeclareOption{basic}{\booltrue{@basic}}
 \DeclareOption{purist}{\booltrue{@purist}}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 
@@ -102,9 +100,6 @@
 		\RequirePackage[english]{babel}
 	}
 }
-
-\ifbool{@basic}{\RequirePackage{lmodern}\endinput}{}
-% == Basic option ends here ==
 
 \RequirePackage{microtype}
 
