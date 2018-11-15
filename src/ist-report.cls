@@ -20,35 +20,35 @@
 \ProvidesClass{ist-report}[2018/11/13 v.0.6.2 Unofficial IST report class]
 
 % ----------------- Initial Code -----------------
-\typeout{_______________________________________________}
-\typeout{_______________________________________________}
-\typeout{___`:::::::::::::::::::::::::::::::::::::::`___}
-\typeout{___.ooooooooooooooooooooooooooooooooooooooo`___}
-\typeout{___.oooooooooooooooooooo/://:/+oooooooooooo`___}
-\typeout{___.oooooooooooooooooo-`_:oo-_`-ooooooooooo`___}
-\typeout{___.ooooooooooooooooo/___+oo+___+oooooooooo`___}
-\typeout{___.ooooooooooooooooo/___+ooo+/+ooooooooooo`___}
-\typeout{___.oooooooooo+///ooo/___+o///////ooooooooo`___}
-\typeout{___.oooooooooo:___+oo/___+o.`___`.ooooooooo`___}
-\typeout{___.oooooooooo:___+oo/___+o+/___/+ooooooooo`___}
-\typeout{___.oooooooooo:___+oo/___+oo/___/oooooooooo`___}
-\typeout{___.oooooooooo:___+oo/___+oo/___/oooooooooo`___}
-\typeout{___`oooooooooo:___+oo/___+oo/___/oooooooooo____}
-\typeout{____+ooooooooo:___+oo/___+oo/___/ooooooooo+____}
-\typeout{____-ooooooooo:___+oo/___+oo/___/ooooooooo-____}
-\typeout{_____+oooooooo+///ooo/___+ooo///ooooooooo/_____}
-\typeout{_____.ooooooooo//+ooo/___+oooooooooooooo+`_____}
-\typeout{______.+oooooo/__`ooo/___+ooooooooooooo+`______}
-\typeout{_______`+ooooo+.`_/o+-_`:ooooooooooooo/`_______}
-\typeout{________`:oooooo+/:////oooooooooooooo:_________}
-\typeout{__________.+ooooooooooooooooooooooo/`__________}
-\typeout{____________-+ooooooooooooooooooo/.____________}
-\typeout{______________./ooooooooooooooo/.______________}
-\typeout{________________`:+ooooooooo+-`________________}
-\typeout{___________________.:+ooo+:.___________________}
-\typeout{______________________.-`______________________}
-\typeout{_______________________________________________}
-\typeout{_______________________________________________}
+\typeout{_____________________________________________________________________________}
+\typeout{_____________________________________________________________________________}
+\typeout{__________________`:::::::::::::::::::::::::::::::::::::::`__________________}
+\typeout{__________________.ooooooooooooooooooooooooooooooooooooooo`__________________}
+\typeout{__________________.oooooooooooooooooooo/://:/+oooooooooooo`__________________}
+\typeout{__________________.oooooooooooooooooo-`_:oo-_`-ooooooooooo`__________________}
+\typeout{__________________.ooooooooooooooooo/___+oo+___+oooooooooo`__________________}
+\typeout{__________________.ooooooooooooooooo/___+ooo+/+ooooooooooo`__________________}
+\typeout{__________________.oooooooooo+///ooo/___+o///////ooooooooo`__________________}
+\typeout{__________________.oooooooooo:___+oo/___+o.`___`.ooooooooo`__________________}
+\typeout{__________________.oooooooooo:___+oo/___+o+/___/+ooooooooo`__________________}
+\typeout{__________________.oooooooooo:___+oo/___+oo/___/oooooooooo`__________________}
+\typeout{__________________.oooooooooo:___+oo/___+oo/___/oooooooooo`__________________}
+\typeout{__________________`oooooooooo:___+oo/___+oo/___/oooooooooo___________________}
+\typeout{___________________+ooooooooo:___+oo/___+oo/___/ooooooooo+___________________}
+\typeout{___________________-ooooooooo:___+oo/___+oo/___/ooooooooo-___________________}
+\typeout{____________________+oooooooo+///ooo/___+ooo///ooooooooo/____________________}
+\typeout{____________________.ooooooooo//+ooo/___+oooooooooooooo+`____________________}
+\typeout{_____________________.+oooooo/__`ooo/___+ooooooooooooo+`_____________________}
+\typeout{______________________`+ooooo+.`_/o+-_`:ooooooooooooo/`______________________}
+\typeout{_______________________`:oooooo+/:////oooooooooooooo:________________________}
+\typeout{_________________________.+ooooooooooooooooooooooo/`_________________________}
+\typeout{___________________________-+ooooooooooooooooooo/.___________________________}
+\typeout{_____________________________./ooooooooooooooo/._____________________________}
+\typeout{_______________________________`:+ooooooooo+-`_______________________________}
+\typeout{__________________________________.:+ooo+:.__________________________________}
+\typeout{_____________________________________.-`_____________________________________}
+\typeout{_____________________________________________________________________________}
+\typeout{_____________________________________________________________________________}
 
 \RequirePackage{etoolbox}
 \RequirePackage{ifxetex}
@@ -104,12 +104,14 @@
 \RequirePackage{microtype}
 
 \ifbool{xetex}{
-	\boolfalse{@purist}
-	\ClassWarning{ist-report}{
-		The 'purist' option is not supported\MessageBreak
-		for unicode engines. To be added in\MessageBreak
-		the future.
-	}
+	\ifbool{@purist}{
+		\boolfalse{@purist}
+		\ClassWarning{ist-report}{
+			The 'purist' option is not supported\MessageBreak
+			for unicode engines. To be added in\MessageBreak
+			the future.
+		}
+	}{}
 }
 
 \ifbool{@purist}{
@@ -163,8 +165,6 @@
 	linkcolor	= {ist-cyan},
 	citecolor	= {ist-gray},
 	urlcolor	= {ist-cyan}}
-
-\graphicspath{{graphics/}}
 
 %  == Macros ==
 \def\@groupno{}
