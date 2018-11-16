@@ -103,25 +103,19 @@
 
 \RequirePackage{microtype}
 
-\ifbool{xetex}{
-	\ifbool{@purist}{
-		\boolfalse{@purist}
-		\ClassWarning{ist-report}{
-			The 'purist' option is not supported\MessageBreak
-			for unicode engines. To be added in\MessageBreak
-			the future.
-		}
-	}{}
-}
-
 \ifbool{@purist}{
 	\ifbool{xetex}{
-		% Temporarily unavailable.
-		%\setmainfont{Arial}
+		\setmainfont[
+			UprightFont = *-regular,
+			Extension = .otf,
+			BoldFont = *-bold,
+			ItalicFont = *-italic,
+			BoldItalicFont = *-bolditalic]{texgyreheros}
+		\setmonofont[Scale = 1.14]{inconsolata}
 	}{
-		\RequirePackage[scaled = 0.92]{helvet}
+		\RequirePackage{tgheros}
 		\renewcommand{\familydefault}{\sfdefault}
-		%\usepackage[scaled = 1.05]{inconsolata}
+		\usepackage[scaled = 1.14]{inconsolata}
 	}
 }{
 	\ifbool{@palatino}{
@@ -143,15 +137,27 @@
 % ------------------ Main Code -------------------
 
 %  == Setup ==
-\geometry{a4paper,
-	tmargin = 2.5cm,
-	bmargin = 2.5cm,
-	lmargin = 2.5cm,
-	rmargin = 2.5cm}
 
-\ifbool{@purist}{\renewcommand\baselinestretch{1.5}}
+\ifbool{@purist}{
+	\geometry{a4paper,
+		tmargin = 2.5cm,
+		bmargin = 2.5cm,
+		lmargin = 2.5cm,
+		rmargin = 2.5cm}
+	\renewcommand\baselinestretch{1.5}
+}{
+	\geometry{a4paper,
+		tmargin = 3cm,
+		bmargin = 3cm,
+		lmargin = 3.5cm,
+		rmargin = 3.5cm}
+}
 
-\ifbool{@twoside}{\geometry{twoside}}{\geometry{nomarginpar}}
+\ifbool{@twoside}{
+	\geometry{twoside}
+}{
+%	\geometry{nomarginpar}
+}
 
 \ifbool{@blackandwhite}{
 	\definecolor{ist-cyan}{cmyk}{1,1,1,1}

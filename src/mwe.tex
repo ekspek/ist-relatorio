@@ -1,7 +1,8 @@
 % arara: xelatex: { shell: yes, synctex: yes }
-\documentclass[english,palatino,]{ist-report}
+\documentclass[english,palatino,purist]{ist-report}
 
 \usepackage{lipsum}
+\graphicspath{{graphics/}}
 
 \begin{document}
 
@@ -25,7 +26,8 @@
 	\item \textit{This is italic text.}
 	\item \texttt{This is monospace text.}
 	\item \textsc{This is smallcaps text.}
-	\item This is regular text mixed with \texttt{monospace} in between.
+	\item This is regular text mixed with \texttt{monospace} monospace in between.
+	\item These are two identical lines, one in monospace and one not. \\ {\ttfamily These are two identical lines, one in monospace and one not.}
 \end{itemize}
 
 This is equation. $x = 2y$

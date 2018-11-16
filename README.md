@@ -24,7 +24,7 @@ Para compilar um documento em LaTeX com esta classe, só é necessário fazer do
 * Um / dois lados
 * Diferentes estilos de cabeçalho / rodapé
 * Modo `purista`
-  * Tenta corresponder ao _Guia da Preparação da Dissertação_ referenciado abaixo o melhor possível. Apenas disponível de momento para _engines_ não-unicode (i.e. pdfTeX)
+  * Tenta corresponder ao _Guia da Preparação da Dissertação_ referenciado abaixo o melhor possível.
 
 ## Referências
 
