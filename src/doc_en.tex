@@ -1,0 +1,225 @@
+% arara: xelatex: { shell: yes, synctex: yes }
+\RequirePackage[l2tabu, orthodox]{nag}
+\documentclass[palatino,english]{ist-report}
+
+% == BEGIN PREAMBLE ==
+% Packages and configurations here aren't really necessary to define the style,
+% but some are recommended to use. Some packages require users to know extra
+% commands to use properly, so I won't include them in the class file for now.
+
+% -- Code snippets
+\usepackage{minted}
+\definecolor{bg}{rgb}{0.98,0.98,0.98}
+\setminted[tex]{bgcolor = bg, breaklines}
+\setmintedinline[tex]{bgcolor = {}} 
+
+% -- Bibliography
+\usepackage{csquotes}
+\usepackage{fvextra}
+\usepackage{biblatex}
+\addbibresource{doc.bib}
+
+% -- Extra math options
+\usepackage{siunitx}
+
+% -- Extra symbols
+\usepackage{amssymb}
+\usepackage{textcomp}
+\usepackage{gensymb}
+
+% --  Image and float settings
+\usepackage{graphicx}
+\graphicspath{{graphics/}}
+\usepackage{subcaption}
+
+% -- Graphs and diagrams
+\usepackage{tikz}
+\usepackage{pgfplots}
+\usetikzlibrary{arrows.meta,positioning}
+\pgfplotsset{compat = 1.16, table/search path = {data/}}
+
+% -- Additional table features --
+\usepackage{booktabs}
+% == END PREAMBLE ==
+
+\newrobustcmd*{\package}[1]{\textcolor{ist-gray}{\texttt{#1}}}
+
+\thispagestyle{empty}
+
+\begin{document}
+
+\institution{}
+\title{}
+
+\begin{center}
+	\vspace*{1cm}
+	{\huge The \texttt{ist-report} class}
+	\medskip\par
+	{\Large Class for sample reports for the Instituto Superior Técnico}
+	\bigskip\bigskip\par
+	{\large Daniel de Schiffart} \\
+	{\url{https://github.com/ekspek/ist-relatorio}}
+	\bigskip\smallskip\par
+	\today \\
+	\textbf{v0.6.3}
+\end{center}
+\vspace*{1cm}
+
+\begin{abstract}
+	The \LaTeX{} class developed in this project was developed as a template for reports developed for the Instituto Superior Técnico of Universidade de Lisboa, themed around the style the university has developed for its own internal documentation, complemented by using specifications defined by the university itself, all the while taking some creative liberties with the missing definitions.
+	
+	This document details the class file, what it exactly contains, what its options are, and a concise documentation of its development, which will grow as the class file progresses. The class file itself, \texttt{ist-report.cls}, should be in the same directory as the \texttt{doc.tex} file.
+\end{abstract}
+
+\tableofcontents
+
+\section{Introduction}
+
+This project has the focus on creating a generic \LaTeX{} report example for IST students to base their own reports upon, to streamline much of the typesetting end of things for an IST report so students and other users can focus on writing content instead of spending time getting \LaTeX{} to work. Hopefully it can also work as a first dive for those who want to learn \LaTeX{} a tad more deeply than that. The final goal being having a working example using a custom class file that contains as many definitions as it can with the least possible amount of custom packages, with a couple of simple customisation options, so it can work as a simple template for those who need it. Obviously I'm taking some liberties with how it will end up looking, but hopefully it'll look pretty and professional and presentable enough.
+
+Flexibility was also a major focus of this class file. The plan was to make something that could be used for most reports with little typographical requirements, taking those liberties and making something simple and easy to use but reusable and, most importantly, adaptable. The class files loads a number of packages and definitions which I felt were fitting to these ideas and to implement the style that I had in mind but as little as possible beyond that, leaving those extras to the user, which meant that some features were left out of the project entirely (I really really wanted to implement \package{minted} at some point).
+
+The consequence of this flexibility and adaptability meant that the final product is very malleable and customizable to the user's preferences. Want to use a different font? Just load the proper package! Want to get rid of those hideous headers and footers (gee, thanks)? Include \mintinline{tex}{\fancyhf{}} in your preamble! The definitions for all loaded packages can be (in theory, anyway) changed with the corresponding packages' macros and commands as if they weren't defined in the class file. This means that using this class file anyone can use the default settings and, with enough time, change it to fit their style. A world of possibilities.
+
+This project also aims to be a learning experience for me. I've only scratched the surface of \LaTeX{} apparently, and looking at examples from other universities and multiple other online resources made me want to see where I can go before giving up or losing my head. Lots of inspiration for working on this project also came from looking at other report and thesis class files from said universities around the world which have made their work available online, with some even including said work within \TeX{} distributions. A particular favourite became the TUDelft's very own \textit{Huisstijl} report class, available online at their website \cite{tudelft-huisstijl}.
+
+A lot of information for the writing and structuring of the class file itself was acquired from appendix A of \textit{The \LaTeX{} Companion} \cite{latex-companion}, which provided a solid base on how to build a class file based on the needs at hand. The documentation for all the implemented classes listed in section \ref{sec:packages} is also relevant and should be mentioned, with most of the documentation being found online in the CTAN website \cite{ctan} or within your preferred \TeX{} distribution.
+\medskip\par
+And of course, the \TeX{} Stack Exchange page \cite{texsx}. But that's a given.
+
+\section{Class File Documentation}
+
+\subsection{Options}
+
+The class file comes with some pre-defined optional arguments. These options can be chosen when loading the class file in the beginning of your \TeX{} file, when you select your document class.
+\begin{minted}{tex}
+\documentclass[english]{ist-report}
+\end{minted}
+In this example, the \package{english} option is loaded, to define the document's main language to english. You can also choose multiple options, like in this next example.
+\begin{minted}{tex}
+\documentclass[english,purist]{ist-report}
+\end{minted}
+Here both the \package{english} and \package{purist} options are loaded. Some options will have priority over others (\textit{i.e.}, are loaded first). This is yet to be fully documented.
+
+\begin{description}
+	\item [Compiler detection] The class detects the compiler being used and will react accordingly, defining certain settings to support the compiler's capabilities and shortcomings. Preferred compiler is \XeLaTeX{}, to make full use of the class file\footnotemark{}. \footnotetext{\XeLaTeX{} uses unicode input encoding, which means users can use unicode symbols in the input file without loading \package{inputenc}. Although not essential, this is very relevant for portuguese documents which make extensive use of unicode latin characters such as á or ç.}
+	\item [Palatino] Loaded using \package{palatino}. This option changes the main font to the palatino-inspired \package{newpxtext}, with math text using \package{eulervm} and typewriter text to \package{nimbusmono}. Off by default.
+	\item [Portuguese or english] Loaded using \package{portuguese} or using \package{english}. Both options refer to setting the document's main language to either portuguese or english. If using \XeLaTeX{}, which loads \package{polyglossia}, both languages will be loaded, with the chosen language set as the main language. Otherwise, only the chosen language will be loaded. Currently, the \package{english} option has priority over \package{portuguese}, but \package{portuguese} is set by default.
+	\item [Black and white] Loaded using \package{bw}. This option activates black and white mode, which sets all custom colors of the document to black. The logo colors cannot be changed via \LaTeX{} and will have to be changed manually.
+	\item [Purist] Loaded using \package{purist}. Remakes the document to match the IST thesis reference guide rules as close as possible. Currently, sets the font to Helvetica (pdf\LaTeX{}) or \TeX{} Gyre Heros (\XeLaTeX{}), the line spacing to $1.5$, and the margins to \SI{2.5}{\centi\meter}. Off by default.
+\end{description}
+
+\subsection{Cover Page}
+
+A customizable cover page was included in this version of the class file. This cover was designed by me and can be accessed using the command \mintinline{tex}{\makecover{}}, which will create an entire page where it is called. It should be called preferably in the very beginning of your document, shortly after your \mintinline{tex}{\begin{document}} call.
+
+This cover makes use of the macros created in the class file. Commands have been defined to set these macros, and should be loaded before the \mintinline{tex}{\makecover{}} command. Some of these macros have been loaded with default text. To empty one of these macros, simply call the command with an empty argument. The full list of these commands is available in table \ref{tab:macros}, and an example implementation is found in code listing \ref{lis:macros}.
+\begin{table}[ht]
+	\centering
+	\begin{tabular}{l l l l}\toprule
+		Text field		& Command						& Default text			& Default english text	\\
+		\midrule
+		Title			& \mintinline{tex}{\title}		& Título de Exemplo		& Sample Title			\\
+		Subtitle		& \mintinline{tex}{\subtitle}	& 						&						\\
+		Subject			& \mintinline{tex}{\subject}	& Disciplina de Exemplo	& Sample Subject		\\
+		Course			& \mintinline{tex}{\course}		& Curso de Exemplo		& Sample Degree			\\
+		Institution		& \mintinline{tex}{\institution}& \multicolumn{2}{c}{Instituto Superior Técnico}\\
+		Group Number	& \mintinline{tex}{\groupno}	& 						& 						\\
+		\bottomrule
+	\end{tabular}
+	\caption{Document macros for covers, headers and footers.}
+	\label{tab:macros}
+\end{table}
+
+\begin{listing}[ht]
+	\begin{minted}[linenos]{tex}
+\title{Relatório Laboratorial}
+\subtitle{Ondas Estacionárias em Cordas Vibrantes}
+\subject{Mecânica e Ondas}
+\author{Daniel de Schiffart \\ 81479 \and Daniel Lopes \\ 81479}
+\course{Mestrado Integrado em Engenharia Aeroespacial}
+\groupno{5}
+\date{Novembro de 2015}
+\makecover{}
+	\end{minted}
+	\caption{Example usage of \mintinline{tex}{\makecover} and the macros in table \ref{tab:macros}.}
+	\label{lis:macros}
+\end{listing}
+
+This cover command is kinda shakey and very much in development, but I plan to implement more styles in the future. In the future. In the meantime, I suggest you make your own covers if you can. The one implemented here might work in a pinch, but the need to make everything macro-dependent does make implementation a bit harder. For anyone interested, I can make the cover code available if you contact me, or you can find it within the class file itself.
+
+\subsection{Headers and Footers}
+
+The class also carries some pre-designed header and footer styles designed by yours truly. These page styles are accessible by using the \mintinline{tex}{\pagestyle{default}}, changing the \texttt{default} to your chosen page style. Aside from the package \package{fancyhdr} options \package{plain} and \package{empty}, three styles, \package{default}, \package{style1} and \package{style2} have been included. Examples for all three, along with extra header and footer styles, should become available in the online repo linked in the cover within due time.
+
+Setting a page style (style for headers and footers) is fairly straightforward, just the \mintinline{tex}{\pagestyle} command with the respective page style, and \TeX{} will set that style for the next page to be typeset.
+\begin{minted}{tex}
+\pagestyle{style1}
+\end{minted}
+More information can be found in the documentation for the \package{fancyhdr} package in CTAN \cite{ctan}.
+
+
+\subsection{Packages}\label{sec:packages}
+
+The class file loads some packages by default to make many options and configurations possible or, at the very least, much easier. Being loaded for the class file, you can use these packages on your own documents without calling them again. Even if you do call them again, \TeX{} will ignore these second calls.
+
+Some packages are loaded depending on the used engine to make full use of your engine of choice, while remaining compatible with the rest. The dependencies are listed in table \ref{tab:packages}. These packages were listed for the defualt class (\textit{i.e.}, no optional arguments) in order of loading as best as I could, and one-engine packages were listed with their counterpart whenever such a definition applies.
+
+\begin{table}[ht]
+	\centering
+	\begin{tabular}{c|c}\toprule
+		pdf\LaTeX{}				& \XeLaTeX{}			\\
+		\midrule
+		\multicolumn{2}{c}{\package{etoolbox}}			\\
+		\multicolumn{2}{c}{\package{ifxetex}}			\\
+		\multicolumn{2}{c}{\package{ifpdf}}				\\
+		\multicolumn{2}{c}{\package{mathtools}}			\\
+		\multicolumn{2}{c}{\package{geometry}}			\\
+		\multicolumn{2}{c}{\package{graphicx}}			\\
+		\multicolumn{2}{c}{\package{hyperref}}			\\
+		\package{inputenc}		&						\\
+		\package{fontenc}		&						\\
+		\phantom{polyglossia}	& \package{fontspec}	\\
+		\package{babel}			& \package{polyglossia}	\\
+		\multicolumn{2}{c}{\package{microtype}}			\\
+		\package{tgheros}		&						\\
+		\multicolumn{2}{c}{\package{inconsolata}}		\\
+		\multicolumn{2}{c}{\package{lmodern}}			\\
+		\multicolumn{2}{c}{\package{xcolor}}			\\
+		\multicolumn{2}{c}{\package{metalogo}}			\\
+		\multicolumn{2}{c}{\package{fancyhdr}}			\\
+		\multicolumn{2}{c}{\package{footmisc}}			\\
+		\multicolumn{2}{c}{\package{caption}}			\\
+		\multicolumn{2}{c}{\package{tikz}}				\\
+		\bottomrule
+	\end{tabular}
+	\caption{Packages loaded by the class file with no optional arguments given.}
+	\label{tab:packages}
+\end{table}
+
+\section{Contacts}
+
+There are problems with the package, be that in actual engine errors, design mismatches or outdated or obsolete packages. I still have a long list of things I want to implement, and that might still take a while.
+So in the meantime, if you come across any problems or inconveniences, have a suggestion, or need some help, you can simply contact me whatever way you prefer, be that via email at \href{mailto:daniel.de.schiffart@gmail.com}{\texttt{daniel.de.schiffart@gmail.com}} or \href{mailto:daniel.de.schiffart@tecnico.ulisboa.pt}{\texttt{daniel.de.schiffart@tecnico.ulisboa.pt}}, or via GitHub at the repo page itself, which I've linked to in the cover page.
+
+If you want to contribute directly, with code, documentation, page style or cover designs, you're more than welcome! I'm not all too familiar with the inner workings of GitHub, but you can try making a pull request on the repo, or even mailing me any contributions you like. I'll be sure to give you the proper credit.
+
+\section{Changelog}
+
+\begin{description}
+	\item [v0.1.0] First working release. Included header and footer, \SI{2.5}{\centi\meter} margins. Implemented \package{palatino} option to separate font choices (default is \package{lmodern}), implemented \TeX{} conditionals to detect \XeTeX{} or pdf\TeX{}.
+	\item [v0.2.0] Added \package{portuguese} and \package{english} options to change report macro language, included IST colors and applied them to \package{hyperref}. Option \package{portuguese} runs by default and doesn't need to be included.
+	\item [v0.2.1] Added black and white option (except logos), added IST logo crop margins.
+	\item [v0.3.0] Reworked \package{twoside} option to work with already implemented features. Implemented \package{etoolbox} package for \TeX{} conditionals.
+	\item [v0.4.0] Added the \verb|\makecover| command with a simple cover example. Added the first version of the placeholder logos.
+	\item [v0.5.0] Separated covers and header and footer styles into separate files (might undo later for release). Headers and footers are now bound to the \verb|\pagestyle| command. By default, the \package{default} page style is loaded. Fixed wrong IST logo crops.
+	\item [v0.5.1] Added \package{basic} option. Added one more style.
+	\item [v0.6.0] Added \package{purist} option, only compatible with non-unicode engines.
+	\item [v0.6.1] First working version of example cover. Fixed cover to use the \package{article} class \verb|\author{}| command. Changed default style. Fixed group number command and implemented it into cover. Small code cleanup.
+	\item [v0.6.2] Removed \package{basic} option.
+	\item [v0.6.3] Added compatibility with unicode engines for the \package{purist} option and changed typewriter text to \package{inconsolata}.
+\end{description}
+
+\printbibliography
+
+\end{document}

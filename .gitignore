@@ -15,7 +15,7 @@
 *.kate-swp
 
 # Minted auxiliary folder
-src/_minted-example/
+src/_minted-*/
 
 # pdf output files
 src/*.pdf

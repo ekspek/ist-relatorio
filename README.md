@@ -23,8 +23,8 @@ Para compilar um documento em LaTeX com esta classe, só é necessário fazer do
 * Cores / preto e branco
 * Um / dois lados
 * Diferentes estilos de cabeçalho / rodapé
-* Modo `purista`
-  * Tenta corresponder ao _Guia da Preparação da Dissertação_ referenciado abaixo o melhor possível.
+* Modo purista
+  * Tenta corresponder ao _Guia de Preparação da Dissertação_ referenciado abaixo o melhor possível.
 
 ## Referências
 
