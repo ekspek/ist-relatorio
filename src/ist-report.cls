@@ -17,7 +17,7 @@
 
 % ---------------- Identification ----------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ist-report}[2018/11/13 v.0.6.2 Unofficial IST report class]
+\ProvidesClass{ist-report}[2018/11/13 v.0.6.3 Unofficial IST report class]
 
 % ----------------- Initial Code -----------------
 \typeout{_____________________________________________________________________________}
@@ -169,7 +169,7 @@
 
 \hypersetup{colorlinks,
 	linkcolor	= {ist-cyan},
-	citecolor	= {ist-gray},
+	citecolor	= {ist-cyan},
 	urlcolor	= {ist-cyan}}
 
 %  == Macros ==
@@ -177,7 +177,7 @@
 \ifbool{@english}{
 	\csdef{@title}{Sample Title}
 	\csdef{@subject}{Sample Subject}
-	\csdef{@course}{Bachelor's Degree in Sample Engineering}
+	\csdef{@course}{Sample Degree}
 	\newcommand*\groupno[1]{\csdef{@groupno}{Group #1}}
 }{
 	\csdef{@title}{Título de Exemplo}
@@ -185,12 +185,13 @@
 	\csdef{@course}{Curso de Exemplo}
 	\newcommand*\groupno[1]{\csdef{@groupno}{Grupo #1}}
 }
-\def\@institution{Instituto Superior Técnico}
+\csdef{@institution}{Instituto Superior Técnico}
 
 \renewcommand*\title[1]{\csdef{@title}{#1}}
 \newcommand*\subtitle[1]{\csdef{@subtitle}{#1}}
 \newcommand*\subject[1]{\csdef{@subject}{#1}}
 \newcommand*\course[1]{\csdef{@course}{#1}}
+\newcommand*\institution[1]{\csdef{@institution}{#1}}
 
 %  == Cover examples ==
 \newrobustcmd\makecover{
@@ -219,6 +220,9 @@
 		
 		\vspace*{0.01\textheight}
 		{\large\@institution}
+		
+		\vspace*{0.01\textheight}
+		{\@date}
 	\end{center}
 	
 	\end{titlepage}
