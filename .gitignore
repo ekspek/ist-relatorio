@@ -15,14 +15,17 @@
 *.kate-swp
 
 # Minted auxiliary folder
-src/_minted-*/
+*/_minted-*/
 
 # pdf output files
 src/*.pdf
+!src/IST_A_CMYK_POS.pdf
+!src/IST_C_CMYK_NEG.pdf
+!src/IST_C_CMYK_POS.pdf
 
 # To-do list
 TODO.md
 
-# Generic auxiliary files
+# Vim auxiliary files
 *.*~
 *.swp

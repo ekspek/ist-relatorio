@@ -265,11 +265,11 @@
 	\renewcommand\footrulewidth{0pt}
 	\ifbool{@twoside}{
 		\fancyhead[LO,RE]{\scshape \@title}
-		\fancyfoot[LO]{\Large \thepage{} \hspace*{2pt} \vrule{} \hspace*{2pt} \raisebox{-4pt}{\includegraphics[height = 14pt, trim = {93.4pt 219.7pt 77pt 221.9pt}, clip]{IST_C_CMYK_NEG}}}
-		\fancyfoot[RE]{\Large \raisebox{-5pt}{\includegraphics[height = 14pt, trim = {93.4pt 219.7pt 77pt 221.9pt}, clip]{IST_C_CMYK_NEG}} \hspace*{2pt} \vrule{} \hspace*{2pt} \thepage{}}
+		\fancyfoot[LO]{\Large \thepage{} \hspace*{2pt} \vrule{} \hspace*{2pt} \raisebox{-4pt}{\includegraphics[height = 14pt, trim = {93.4pt 219.7pt 77pt 221.9pt}, clip]{IST_C_CMYK_POS}}}
+		\fancyfoot[RE]{\Large \raisebox{-5pt}{\includegraphics[height = 14pt, trim = {93.4pt 219.7pt 77pt 221.9pt}, clip]{IST_C_CMYK_POS}} \hspace*{2pt} \vrule{} \hspace*{2pt} \thepage{}}
 	}{
 		\fancyhead[R]{\scshape \@title}
-		\fancyfoot[R]{\Large \raisebox{-5pt}{\includegraphics[height = 14pt, trim = {93.4pt 219.7pt 77pt 221.9pt}, clip]{IST_C_CMYK_NEG}} \hspace*{2pt} \vrule{} \hspace*{2pt} \thepage{}}
+		\fancyfoot[R]{\Large \raisebox{-5pt}{\includegraphics[height = 14pt, trim = {93.4pt 219.7pt 77pt 221.9pt}, clip]{IST_C_CMYK_POS}} \hspace*{2pt} \vrule{} \hspace*{2pt} \thepage{}}
 	}
 }
 

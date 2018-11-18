@@ -1,4 +1,4 @@
-% arara: xelatex: { shell: yes, synctex: yes }
+% arara: xelatex: { shell: yes, synctex: yes, options: [ '-output-directory=../doc/' ] }
 \documentclass{ist-report}
 
 % == BEGIN PREAMBLE ==
@@ -6,8 +6,8 @@
 % but are recommended to use. Some packages require users to know extra commands
 % to use properly, so I won't include them in the class file for now.
 
-% -- Code snippets (this one is a challenge to implement)
-\usepackage{minted}
+% -- Code snippets
+\usepackage[outputdir=../doc/]{minted}
 \definecolor{bg}{rgb}{0.95,0.95,0.95}
 \setminted[c]{linenos, bgcolor = bg, breaklines}
 \setmintedinline[c]{bgcolor = {}} 
@@ -26,7 +26,6 @@
 
 % --  Image and float settings
 \usepackage{graphicx}
-\graphicspath{{graphics/}}
 \usepackage{subcaption}
 
 % -- Graphs and diagrams
