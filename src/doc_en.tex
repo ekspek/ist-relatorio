@@ -1,4 +1,4 @@
-% arara: xelatex: { shell: yes, synctex: yes }
+% arara: xelatex: { shell: yes, synctex: yes, options: [ '-output-directory=../doc/' ] }
 \RequirePackage[l2tabu, orthodox]{nag}
 \documentclass[palatino,english]{ist-report}
 
@@ -8,8 +8,8 @@
 % commands to use properly, so I won't include them in the class file for now.
 
 % -- Code snippets
-\usepackage{minted}
-\definecolor{bg}{rgb}{0.98,0.98,0.98}
+\usepackage[outputdir=../doc/]{minted}
+\definecolor{bg}{rgb}{0.97,0.97,0.97}
 \setminted[tex]{bgcolor = bg, breaklines}
 \setmintedinline[tex]{bgcolor = {}} 
 
@@ -29,7 +29,6 @@
 
 % --  Image and float settings
 \usepackage{graphicx}
-\graphicspath{{graphics/}}
 \usepackage{subcaption}
 
 % -- Graphs and diagrams
@@ -43,8 +42,6 @@
 % == END PREAMBLE ==
 
 \newrobustcmd*{\package}[1]{\textcolor{ist-gray}{\texttt{#1}}}
-
-\thispagestyle{empty}
 
 \begin{document}
 
@@ -87,11 +84,13 @@ A lot of information for the writing and structuring of the class file itself wa
 \medskip\par
 And of course, the \TeX{} Stack Exchange page \cite{texsx}. But that's a given.
 
-\section{Class File Documentation}
+\section{Installation and Usage}
 
-\subsection{Options}
-
-The class file comes with some pre-defined optional arguments. These options can be chosen when loading the class file in the beginning of your \TeX{} file, when you select your document class.
+The way to use this class file is quite simple, just place the class file \textcolor{ist-cyan}{\texttt{ist-report.cls}} in the same folder as your \TeX{} document, then within the document load the class using the \mintinline{tex}{\documentclass} command in the beginning of your file, as in this next example.
+\begin{minted}{tex}
+	\documentclass{ist-report}
+\end{minted}
+The class file comes with some pre-defined optional arguments. These options can be chosen when loading the class file.
 \begin{minted}{tex}
 \documentclass[english]{ist-report}
 \end{minted}
@@ -101,6 +100,21 @@ In this example, the \package{english} option is loaded, to define the document'
 \end{minted}
 Here both the \package{english} and \package{purist} options are loaded. Some options will have priority over others (\textit{i.e.}, are loaded first). This is yet to be fully documented.
 
+The full list of options can be found in section \ref{sec:options}.
+
+\subsection{IST Logos}
+
+The class file can make use of the Instituto Superior Técnico's logos for use in various places, namely the cover, but also some headers or footers. The logos are not included with the class file nor in the GitHub repo for reasons (I really don't want to risk it, I mean, it's not my work) but are available for download at the \href{https://tecnico.ulisboa.pt/pt/sobre-o-tecnico/institucional/logo-e-manual-de-identidade/}{official IST website}. The GitHub repo for this class file does however include placeholders to avoid any \textit{file missing} errors and give an idea what files you should replace, but don't leave them in when you finish your document (highly recommended, I mean, really).
+
+This class uses both the A and C versions. To make sure the logos are included in your document, place the files \texttt{IST\_A\_CMYK\_POS.pdf} and \texttt{IST\_C\_CMYK\_POS.pdf} in the same folder as your document file (and, consequently, the same folder as the class file). Both files can be found in the website linked previously.
+
+A third placeholder can be found in the repo, which does not match any distributed logo. This version is the black and white version of \texttt{IST\_C\_CMYK\_POS.pdf}, and is used for one of the footer styles. To get this version, you have to change the original \texttt{pdf} file using your vector program of choice to set all colors to black and white. That's the current workaround, as the university doesn't provide a corresponding \texttt{pdf} option for this version of the logo, but I'm working on using the \texttt{png} file that IS distributed for this particular page style. I'll update this documentation when I get it working.
+
+\section{Class File Documentation}
+
+\subsection{Options}\label{sec:options}
+
+This section contains the full list of available class options and what argument to use to load them into your document.
 \begin{description}
 	\item [Compiler detection] The class detects the compiler being used and will react accordingly, defining certain settings to support the compiler's capabilities and shortcomings. Preferred compiler is \XeLaTeX{}, to make full use of the class file\footnotemark{}. \footnotetext{\XeLaTeX{} uses unicode input encoding, which means users can use unicode symbols in the input file without loading \package{inputenc}. Although not essential, this is very relevant for portuguese documents which make extensive use of unicode latin characters such as á or ç.}
 	\item [Palatino] Loaded using \package{palatino}. This option changes the main font to the palatino-inspired \package{newpxtext}, with math text using \package{eulervm} and typewriter text to \package{nimbusmono}. Off by default.
@@ -203,6 +217,12 @@ There are problems with the package, be that in actual engine errors, design mis
 So in the meantime, if you come across any problems or inconveniences, have a suggestion, or need some help, you can simply contact me whatever way you prefer, be that via email at \href{mailto:daniel.de.schiffart@gmail.com}{\texttt{daniel.de.schiffart@gmail.com}} or \href{mailto:daniel.de.schiffart@tecnico.ulisboa.pt}{\texttt{daniel.de.schiffart@tecnico.ulisboa.pt}}, or via GitHub at the repo page itself, which I've linked to in the cover page.
 
 If you want to contribute directly, with code, documentation, page style or cover designs, you're more than welcome! I'm not all too familiar with the inner workings of GitHub, but you can try making a pull request on the repo, or even mailing me any contributions you like. I'll be sure to give you the proper credit.
+
+\section{License}
+
+This project is licensed using the \href{https://www.latex-project.org/lppl/}{\LaTeX{} Project Public License v1.3}. What this exactly entails I don't exactly know, I'm not a lawyer, but the gist of it is that you can use and distribute this stuff as much as you want, send it to friends and family, but you can only modify and distribute it if you change the file name. More details are available online, but that's about as concise as I can make it here.
+
+Don't be discouraged to distribute the class file if you are pleased with it and feel like other people could use it, I'd very much appreciate it! Don't be discouraged to modify and experiment with it either, I'm always open for feedback!
 
 \section{Changelog}
 
