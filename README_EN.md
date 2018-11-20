@@ -16,6 +16,10 @@ To compile a LaTeX document with this class, you only need to download the file 
 ````
 3. Compile your document.
 
+### Logos
+
+The Instituto Superior Técnico official logos aren't included in this repository, but can be found in the [official page](https://tecnico.ulisboa.pt/pt/sobre-o-tecnico/institucional/logo-e-manual-de-identidade/). The usage of these logos is recommended and the present repository contains placeholder files, images with the same name, size and structure as the official logos, in the correct place to be replaced by the correct files available in the link above.
+
 ## Documentation
 
 The [documentation](doc/) made available in this repo contains details on the inner workings of the class file and the extra options included within. Various examples of usage are also planned for upload.

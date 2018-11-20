@@ -18,6 +18,10 @@ Para compilar um documento em LaTeX com esta classe, só é necessário fazer do
 ````
 3. Compilar o documento.
 
+### Logótipos
+
+Os logótipos oficiais do Instituto Superior Técnico não estão incluídos neste repositório, mas podem ser encontrados na [página oficial](https://tecnico.ulisboa.pt/pt/sobre-o-tecnico/institucional/logo-e-manual-de-identidade/). A utilização destes logótipos são recomendados e o repositório tem _placeholders_, ficheiros com nome, tamanho e estrutura iguais aos logótipos oficiais, colocados no sítio certo para serem substituídos pelos ficheiros corretos.
+
 ## Documentação
 
 A [documentação](doc/) disponibilizada inclui detalhes sobre o conteúdo da classe e como melhor fazer uso das funções incluídas. Ainda estão planeados serem incluídos diversos exemplos a utilizar a classe.

@@ -1,14 +1,14 @@
-% arara: xelatex: { shell: yes, synctex: yes, options: [ '-output-directory=../doc/' ] }
+% arara: xelatex: { shell: yes, synctex: yes }
+%% arara: xelatex: { shell: yes, synctex: yes, options: [ '-output-directory=../doc/' ] }
 \RequirePackage[l2tabu, orthodox]{nag}
 \documentclass[palatino,english]{ist-report}
 
 % == BEGIN PREAMBLE ==
 % Packages and configurations here aren't really necessary to define the style,
-% but some are recommended to use. Some packages require users to know extra
-% commands to use properly, so I won't include them in the class file for now.
+% but some are recommended to use. I leave that to your own criteria.
 
 % -- Code snippets
-\usepackage[outputdir=../doc/]{minted}
+\usepackage{minted}
 \definecolor{bg}{rgb}{0.97,0.97,0.97}
 \setminted[tex]{bgcolor = bg, breaklines}
 \setmintedinline[tex]{bgcolor = {}} 
@@ -29,15 +29,11 @@
 
 % --  Image and float settings
 \usepackage{graphicx}
-\usepackage{subcaption}
 
 % -- Graphs and diagrams
 \usepackage{tikz}
-\usepackage{pgfplots}
-\usetikzlibrary{arrows.meta,positioning}
-\pgfplotsset{compat = 1.16, table/search path = {data/}}
 
-% -- Additional table features --
+% -- Additional table features
 \usepackage{booktabs}
 % == END PREAMBLE ==
 
@@ -88,7 +84,7 @@ And of course, the \TeX{} Stack Exchange page \cite{texsx}. But that's a given.
 
 The way to use this class file is quite simple, just place the class file \textcolor{ist-cyan}{\texttt{ist-report.cls}} in the same folder as your \TeX{} document, then within the document load the class using the \mintinline{tex}{\documentclass} command in the beginning of your file, as in this next example.
 \begin{minted}{tex}
-	\documentclass{ist-report}
+\documentclass{ist-report}
 \end{minted}
 The class file comes with some pre-defined optional arguments. These options can be chosen when loading the class file.
 \begin{minted}{tex}
@@ -108,7 +104,7 @@ The class file can make use of the Instituto Superior Técnico's logos for use i
 
 This class uses both the A and C versions. To make sure the logos are included in your document, place the files \texttt{IST\_A\_CMYK\_POS.pdf} and \texttt{IST\_C\_CMYK\_POS.pdf} in the same folder as your document file (and, consequently, the same folder as the class file). Both files can be found in the website linked previously.
 
-A third placeholder can be found in the repo, which does not match any distributed logo. This version is the black and white version of \texttt{IST\_C\_CMYK\_POS.pdf}, and is used for one of the footer styles. To get this version, you have to change the original \texttt{pdf} file using your vector program of choice to set all colors to black and white. That's the current workaround, as the university doesn't provide a corresponding \texttt{pdf} option for this version of the logo, but I'm working on using the \texttt{png} file that IS distributed for this particular page style. I'll update this documentation when I get it working.
+A third placeholder can be found in the repo, which does not match any distributed logo. This version is the black and white version of \texttt{IST\_C\_CMYK\_POS.pdf}, and is used for one of the footer styles. To get this version, you have to change the original \texttt{pdf} file using your vector program of choice to set all colors to black and white. That's the current workaround, as the university doesn't provide a corresponding \texttt{pdf} option for this version of the logo.
 
 \section{Class File Documentation}
 
