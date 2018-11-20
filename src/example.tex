@@ -24,6 +24,9 @@
 \usepackage{textcomp}
 \usepackage{gensymb}
 
+% -- Additional table features
+\usepackage{booktabs}
+
 % --  Image and float settings
 \usepackage{graphicx}
 \usepackage{subcaption}
@@ -90,15 +93,16 @@ According to the \textit{Wikibooks} \LaTeX{} online textbook \cite{latexwiki},
 
 \subsubsection{Tables}
 
-My apologies for this section, my \LaTeX{} is kinda shoddy when it comes to tables; I've been kinda making it work with basic \texttt{tabular} environments, like the one in table \ref{tab:ex1}.
+My apologies for this section, my \LaTeX{} is kinda shoddy when it comes to tables; I've been kinda making it work with basic \package{tabular} environments, like the one in table \ref{tab:ex1}. I do however recommend using \package{booktabs} after getting familiar with \package{tabular}, it's a small increment but goes a long way in helping the look of your tables.
 \begin{table}[ht]
 	\centering
-	\begin{tabular}{l c c c}
+	\begin{tabular}{l c c c}\toprule
 				& Column 1	& Column 2	& Column 3	\\
-	\hline
+	\midrule
 	Line 1		& $0.0$		& $0.1$		& $0.2$		\\
 	Line 2		& $0.4$		& $0.5$		& $0.6$		\\
-	Line 3		& $0.8$		& $0.9$		& $1.0$
+	Line 3		& $0.8$		& $0.9$		& $1.0$		\\
+	\bottomrule
 	\end{tabular}
 	\caption{Basic table example.}
 	\label{tab:ex1}
