@@ -17,7 +17,7 @@
 
 % ---------------- Identification ----------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ist-report}[2018/11/13 v.0.6.3 Unofficial IST report class]
+\ProvidesClass{ist-report}[2018/11/23 v.0.7.0 Unofficial IST report class]
 
 % ----------------- Initial Code -----------------
 \typeout{_____________________________________________________________________________}
@@ -58,13 +58,15 @@
 \newbool{@english}
 \newbool{@blackandwhite}
 \newbool{@purist}
+\newbool{@minimal}
 
 % ------------ Declaration of Options ------------
-\DeclareOption{palatino}{\booltrue{@palatino}}
-\DeclareOption{portuguese}{\booltrue{@portuguese}}
-\DeclareOption{english}{\booltrue{@english}}
-\DeclareOption{bw}{\booltrue{@blackandwhite}}
-\DeclareOption{purist}{\booltrue{@purist}}
+\DeclareOption{palatino}	{\booltrue{@palatino}}
+\DeclareOption{portuguese}	{\booltrue{@portuguese}}
+\DeclareOption{english}		{\booltrue{@english}}
+\DeclareOption{bw}			{\booltrue{@blackandwhite}}
+\DeclareOption{purist}		{\booltrue{@purist}}
+\DeclareOption{minimal}		{\booltrue{@minimal}}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 
 % ------------- Execution of Options -------------
@@ -73,6 +75,20 @@
 
 % --------------- Package Loading ----------------
 \LoadClass{article}
+
+% Define option hierarchy and set conflict resolution
+\ifbool{@purist}{
+	\boolfalse{@minimal}
+	\boolfalse{@twocolumn}
+	\boolfalse{@palatino}
+}{}
+\ifbool{@minimal}{
+	\boolfalse{@twoside}
+	\boolfalse{@twocolumn}
+}{}
+\ifbool{@english}{
+	\boolfalse{@portuguese}
+}{}
 
 \RequirePackage{mathtools}
 
@@ -101,8 +117,6 @@
 	}
 }
 
-\RequirePackage{microtype}
-
 \ifbool{@purist}{
 	\ifbool{xetex}{
 		\setmainfont[
@@ -115,7 +129,7 @@
 	}{
 		\RequirePackage{tgheros}
 		\renewcommand{\familydefault}{\sfdefault}
-		\usepackage[scaled = 1.14]{inconsolata}
+		\RequirePackage[scaled = 1.14]{inconsolata}
 	}
 }{
 	\ifbool{@palatino}{
@@ -127,12 +141,19 @@
 	}
 }
 
+\RequirePackage{microtype}
 \RequirePackage{xcolor}
 \RequirePackage{metalogo}
 \RequirePackage{fancyhdr}
 \RequirePackage[bottom]{footmisc}
 \RequirePackage{caption}
 \RequirePackage{tikz}
+
+\ifbool{@minimal}{
+	\RequirePackage{multicol}
+	\AfterEndPreamble{\begin{multicols}{2}}
+	\AtEndDocument{\end{multicols}}
+}{}
 
 % ------------------ Main Code -------------------
 
@@ -143,20 +164,32 @@
 		tmargin = 2.5cm,
 		bmargin = 2.5cm,
 		lmargin = 2.5cm,
-		rmargin = 2.5cm}
+		rmargin = 2.5cm
+	}
 	\renewcommand\baselinestretch{1.5}
 }{
-	\geometry{a4paper,
-		tmargin = 3cm,
-		bmargin = 3cm,
-		lmargin = 3.5cm,
-		rmargin = 3.5cm}
-}
-
-\ifbool{@twoside}{
-	\geometry{twoside}
-}{
-%	\geometry{nomarginpar}
+	\ifbool{@minimal}{
+		\geometry{a4paper,
+			tmargin = 1cm,
+			bmargin = 1cm,
+			lmargin = 1cm,
+			rmargin = 1cm,
+			includeheadfoot,
+			nomarginpar,
+			head = 12pt,
+			foot = 22pt,
+		}
+	}{
+		\geometry{a4paper,
+			tmargin = 3cm,
+			bmargin = 3cm,
+			lmargin = 3.5cm,
+			rmargin = 3.5cm,
+		}
+		\ifbool{@twoside}{
+			\geometry{twoside}
+		}{}
+	}
 }
 
 \ifbool{@blackandwhite}{
@@ -174,24 +207,48 @@
 
 %  == Macros ==
 \def\@groupno{}
+\csdef{@institution}{Instituto Superior Técnico}
+\csdef{@coverdate}{\today}
 \ifbool{@english}{
 	\csdef{@title}{Sample Title}
+	\csdef{@subtitle}{Sample Subtitle}
 	\csdef{@subject}{Sample Subject}
 	\csdef{@course}{Sample Degree}
 	\newcommand*\groupno[1]{\csdef{@groupno}{Group #1}}
 }{
 	\csdef{@title}{Título de Exemplo}
+	\csdef{@subtitle}{Subtítulo de Exemplo}
 	\csdef{@subject}{Disciplina de Exemplo}
 	\csdef{@course}{Curso de Exemplo}
 	\newcommand*\groupno[1]{\csdef{@groupno}{Grupo #1}}
 }
-\csdef{@institution}{Instituto Superior Técnico}
 
 \renewcommand*\title[1]{\csdef{@title}{#1}}
 \newcommand*\subtitle[1]{\csdef{@subtitle}{#1}}
 \newcommand*\subject[1]{\csdef{@subject}{#1}}
 \newcommand*\course[1]{\csdef{@course}{#1}}
 \newcommand*\institution[1]{\csdef{@institution}{#1}}
+
+%  == Minimal mode header
+\newrobustcmd\makeheader{
+	\ifbool{@minimal}{\end{multicols}}{}
+	\begin{center}
+		\includegraphics[scale=0.3, trim = {93.4pt 219.7pt 77pt 221.9pt}]{IST_C_CMYK_POS}
+		
+		\vspace*{3mm}
+		{\huge \textsc{\@title}} \\
+		\vspace*{4mm}
+		{\LARGE \@subtitle}
+		\vspace*{4mm} \\
+		{\large \@author}
+		
+		\vspace*{3mm}
+		{\Large \@coverdate}
+		\vspace*{4mm} \\
+		\rule{\linewidth}{0.5pt}
+	\end{center}
+	\ifbool{@minimal}{\begin{multicols}{2}}
+}
 
 %  == Cover examples ==
 \newrobustcmd\makecover{
@@ -202,7 +259,6 @@
 		\includegraphics[width = 0.4\linewidth, trim = {172.4pt 202.7pt 172.6pt 201.4pt}, clip]{IST_A_CMYK_POS}
 		
 		\vspace*{0.1\textheight}
-% 		\vspace{\fill}
 		{\huge\bfseries\@title}
 		
 		\vspace*{0.01\textheight}
@@ -232,20 +288,17 @@
 %  == Page style examples ==
 \fancypagestyle{default}{
 	\fancyhf{}
-	\renewcommand\headrulewidth{0.pt}
+	\renewcommand\headrulewidth{0pt}
 	\renewcommand\footrulewidth{0pt}
 	\fancyfoot[C]{\raisebox{-8.55pt}{
-		% Set variable size depending on page number if possible (or set as node)
 		\begin{tikzpicture}[x = 0.053cm, y = 0.05367cm]
-			\coordinate (c1) at (0,0); % Redo setting (0,0) to the south anchor of the text node
+			\coordinate (c1) at (0,0);
 			\coordinate (c2) at (11,0);
 			\coordinate (c3) at (11,-5);
 			\coordinate (c4) at (5.5,-13);
 			\coordinate (c5) at (0,-5);
-			\coordinate (center) at (5.5,-6.5); % Set using relative positioning
-			\coordinate (text) at (5.5,-5.5); % Set relative to (center)
-			%\fill [color = {black!80!white}] (c1) to (c2) to (c3) to [out = -90, in = 30] (c4) to [out = 150, in = -90] (c5) to cycle;
-			%\node (pageno) at (text) [align = center] {\color{white} \textbf \thepage};
+			\coordinate (center) at (5.5,-6.5);
+			\coordinate (text) at (5.5,-5.5);
 			\draw [thin, color = {black}] (c1) to (c2) to (c3) to [out = -90, in = 30] (c4) to [out = 150, in = -90] (c5) to cycle;
 			\node (pageno) at (text) [align = center] {\thepage};
 		\end{tikzpicture}}
@@ -257,6 +310,27 @@
 		\fancyhead[L]{\scshape \@institution}
 		\fancyhead[R]{\scshape \@title}
 	}
+}
+
+\fancypagestyle{minimalstyle}{
+	\fancyhf{}
+	\renewcommand\headrulewidth{0.2pt}
+	\renewcommand\footrulewidth{0pt}
+	\fancyfoot[C]{\raisebox{-8.55pt}{
+		\begin{tikzpicture}[x = 0.053cm, y = 0.05367cm]
+			\coordinate (c1) at (0,0);
+			\coordinate (c2) at (11,0);
+			\coordinate (c3) at (11,-5);
+			\coordinate (c4) at (5.5,-13);
+			\coordinate (c5) at (0,-5);
+			\coordinate (center) at (5.5,-6.5);
+			\coordinate (text) at (5.5,-5.5);
+			\draw [thin, color = {black}] (c1) to (c2) to (c3) to [out = -90, in = 30] (c4) to [out = 150, in = -90] (c5) to cycle;
+			\node (pageno) at (text) [align = center] {\thepage};
+		\end{tikzpicture}
+	}}
+	\fancyhead[L]{\scshape \@institution}
+	\fancyhead[R]{\scshape \@subject}
 }
 
 \fancypagestyle{style1}{
@@ -275,7 +349,7 @@
 
 \fancypagestyle{style2}{
 	\fancyhf{}
-	\renewcommand\headrulewidth{0.pt}
+	\renewcommand\headrulewidth{0pt}
 	\renewcommand\footrulewidth{0pt}
 	\ifbool{@twoside}{
 		\fancyhead[LO,RE]{\scshape \@institution}
@@ -291,5 +365,9 @@
 \ifbool{@purist}{
 	\pagestyle{plain}
 }{
-	\pagestyle{default}
+	\ifbool{@minimal}{
+		\pagestyle{minimalstyle}
+	}{
+		\pagestyle{default}
+	}
 }
