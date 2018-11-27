@@ -18,6 +18,10 @@ Para compilar um documento em LaTeX com esta classe, só é necessário fazer do
 ````
 3. Compilar o documento.
 
+### Compilação
+
+Qualquer documento que utilize esta classe pode ser compilado da mesma maneira que a maior parte dos documentos LaTeX, sem configurações adicionais. Num serviço como o [Overleaf](https://www.overleaf.com/ "Overleaf"), basta fazer upload da classe e compilar. Para uma instalação local, basta correr o compilador através do editor de eleição ou através de `pdflatex doc.tex` ou `xelatex doc.tex` na linha de comandos, onde `doc.tex` é o documento a ser compilado.
+
 ### Logótipos
 
 Os logótipos oficiais do Instituto Superior Técnico não estão incluídos neste repositório, mas podem ser encontrados na [página oficial](https://tecnico.ulisboa.pt/pt/sobre-o-tecnico/institucional/logo-e-manual-de-identidade/). A utilização destes logótipos são recomendados e o repositório tem _placeholders_, ficheiros com nome, tamanho e estrutura iguais aos logótipos oficiais, colocados no sítio certo para serem substituídos pelos ficheiros corretos.

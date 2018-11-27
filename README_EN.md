@@ -16,6 +16,10 @@ To compile a LaTeX document with this class, you only need to download the file 
 ````
 3. Compile your document.
 
+### Building your document
+
+Using this class requires no special attention from the user when it comes to building your document. Using a service like [Overleaf](https://www.overleaf.com/ "Overleaf"), just upload the class file and compile. With a local distribution, you can build using your editor of choice or using `pdflatex doc.tex` or `xelatex doc.tex` in your console, where `doc.tex` is the file to be compiled.
+
 ### Logos
 
 The Instituto Superior Técnico official logos aren't included in this repository, but can be found in the [official page](https://tecnico.ulisboa.pt/pt/sobre-o-tecnico/institucional/logo-e-manual-de-identidade/). The usage of these logos is recommended and the present repository contains placeholder files, images with the same name, size and structure as the official logos, in the correct place to be replaced by the correct files available in the link above.
