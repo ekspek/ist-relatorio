@@ -14,6 +14,10 @@
   % The Current Maintainer of this work is Daniel de Schiffart.
   %
   % This work consists of the file ist-report.cls.
+  %
+  % The most recent version of this work, along with
+  % documentation and examples, can be found online
+  % at https://github.com/ekspek/ist-relatorio
 
 % ---------------- Identification ----------------
 \NeedsTeXFormat{LaTeX2e}
@@ -111,9 +115,9 @@
 	\RequirePackage[utf8]{inputenc}
 	\RequirePackage[T1]{fontenc}
 	\ifbool{@english}{
-		\RequirePackage[portuguese]{babel}
-	}{
 		\RequirePackage[english]{babel}
+	}{
+		\RequirePackage[portuguese]{babel}
 	}
 }
 
@@ -161,19 +165,16 @@
 
 \ifbool{@purist}{
 	\geometry{a4paper,
-		tmargin = 2.5cm,
-		bmargin = 2.5cm,
-		lmargin = 2.5cm,
-		rmargin = 2.5cm
+		vmargin = 2.5cm,
+		hmargin = 2.5cm,
 	}
 	\renewcommand\baselinestretch{1.5}
 }{
 	\ifbool{@minimal}{
 		\geometry{a4paper,
-			tmargin = 1cm,
-			bmargin = 1cm,
-			lmargin = 1cm,
-			rmargin = 1cm,
+			top = 0.7cm,
+			bottom = 1cm,
+			hmargin = 1cm,
 			includeheadfoot,
 			nomarginpar,
 			head = 12pt,
@@ -181,10 +182,9 @@
 		}
 	}{
 		\geometry{a4paper,
-			tmargin = 3cm,
-			bmargin = 3cm,
-			lmargin = 3.5cm,
-			rmargin = 3.5cm,
+			includeheadfoot,
+			vmargin = 2cm,
+			hmargin = 3.5cm,
 		}
 		\ifbool{@twoside}{
 			\geometry{twoside}
