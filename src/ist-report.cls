@@ -21,7 +21,7 @@
 
 % ---------------- Identification ----------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ist-report}[2018/11/23 v.0.7.0 Unofficial IST report class]
+\ProvidesClass{ist-report}[2018/11/23 v0.7.0 Unofficial IST report class]
 
 % ----------------- Initial Code -----------------
 \typeout{_____________________________________________________________________________}
@@ -55,6 +55,7 @@
 \typeout{_____________________________________________________________________________}
 
 \RequirePackage{etoolbox}
+\RequirePackage{ifluatex}
 \RequirePackage{ifxetex}
 \RequirePackage{ifpdf}
 \newbool{@palatino}
@@ -94,13 +95,25 @@
 	\boolfalse{@portuguese}
 }{}
 
+% Unicode boolean for either XeTeX or LuaTeX
+\newbool{unicode}
+\ifbool{xetex}{
+	\booltrue{unicode}
+}{
+	\ifbool{luatex}{
+		\booltrue{unicode}
+	}{
+		\boolfalse{unicode}
+	}
+}
+
 \RequirePackage{mathtools}
 
 \RequirePackage{geometry}
 \RequirePackage{graphicx}
 \RequirePackage{hyperref}
 
-\ifbool{xetex}{
+\ifbool{unicode}{
 	\RequirePackage{fontspec}
 	\defaultfontfeatures{Ligatures = TeX}
 	\RequirePackage{polyglossia}
@@ -122,7 +135,7 @@
 }
 
 \ifbool{@purist}{
-	\ifbool{xetex}{
+	\ifbool{unicode}{
 		\setmainfont[
 			UprightFont = *-regular,
 			Extension = .otf,
