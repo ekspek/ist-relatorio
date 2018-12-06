@@ -72,5 +72,3 @@ xelatex main.tex -shell-escape
 Again, search online how your editor can do this automatically.
 
 If you use a service like Overleaf, everything is done for you :)
-
-1 directory, 5 files
