@@ -55,7 +55,7 @@
 	{\url{https://github.com/ekspek/ist-relatorio}}
 	\bigskip\smallskip\par
 	\today \\
-	\textbf{v0.7.0}
+	\textbf{v0.7.1}
 \end{center}
 \vspace*{1cm}
 
@@ -111,7 +111,7 @@ This class uses both the A and C versions. To make sure the logos are included i
 
 This section contains the full list of available class options and what argument to use to load them into your document.
 \begin{description}
-	\item [Compiler detection] The class detects the compiler being used and will react accordingly, defining certain settings to support the compiler's capabilities and shortcomings. Preferred compiler is \XeLaTeX{}, to make full use of the class file\footnotemark{}. \footnotetext{\XeLaTeX{} uses unicode input encoding, which means users can use unicode symbols in the input file without loading \package{inputenc}. Although not essential, this is very relevant for portuguese documents which make extensive use of unicode latin characters such as á or ç.}
+	\item [Compiler detection] The class detects the compiler being used and will react accordingly, defining certain settings to support the compiler's capabilities and shortcomings. Preferred compiler is either \XeLaTeX{} or \LuaLaTeX{}, to make full use of the class file\footnotemark{}. \footnotetext{Both \XeLaTeX{} and \LuaLaTeX{} use unicode input encoding, which means users can use unicode symbols in the input file without loading \package{inputenc}. Although not essential, this is very relevant for portuguese documents which make extensive use of unicode latin characters such as á or ç.}
 	\item [Palatino] Loaded using \command{palatino}. This option changes the main font to the palatino-inspired \package{newpxtext}, with math text using \package{eulervm} and typewriter text to \package{nimbusmono}. Off by default.
 	\item [Portuguese or english] Loaded using \command{portuguese} or using \command{english}. Both options refer to setting the document's main language to either portuguese or english. If using \XeLaTeX{}, which loads \package{polyglossia}, both languages will be loaded, with the chosen language set as the main language. Otherwise, using \package{babel}, only the chosen language will be loaded. Currently, the \command{english} option has priority over \command{portuguese}, but \command{portuguese} is set by default.
 	\item [Black and white] Loaded using \command{bw}. This option activates black and white mode, which sets all custom colors of the document to black except for the logo colors, which cannot be changed via \LaTeX{}. This is recommended for printing, as the cyan color used in a number of things may look faded in standard black and white printing.
@@ -183,29 +183,30 @@ Some packages are loaded depending on the used engine to make full use of your e
 \begin{table}[ht]
 	\centering
 	\begin{tabular}{c|c}\toprule
-		pdf\LaTeX{}				& \XeLaTeX{}			\\
+		pdf\LaTeX{}				& \XeLaTeX{} or \LuaLaTeX{}	\\
 		\midrule
-		\multicolumn{2}{c}{\package{etoolbox}}			\\
-		\multicolumn{2}{c}{\package{ifxetex}}			\\
-		\multicolumn{2}{c}{\package{ifpdf}}				\\
-		\multicolumn{2}{c}{\package{mathtools}}			\\
-		\multicolumn{2}{c}{\package{geometry}}			\\
-		\multicolumn{2}{c}{\package{graphicx}}			\\
-		\multicolumn{2}{c}{\package{hyperref}}			\\
-		\package{inputenc}		&						\\
-		\package{fontenc}		&						\\
-		\phantom{polyglossia}	& \package{fontspec}	\\
-		\package{babel}			& \package{polyglossia}	\\
-		\multicolumn{2}{c}{\package{microtype}}			\\
-		\package{tgheros}		&						\\
-		\multicolumn{2}{c}{\package{inconsolata}}		\\
-		\multicolumn{2}{c}{\package{lmodern}}			\\
-		\multicolumn{2}{c}{\package{xcolor}}			\\
-		\multicolumn{2}{c}{\package{metalogo}}			\\
-		\multicolumn{2}{c}{\package{fancyhdr}}			\\
-		\multicolumn{2}{c}{\package{footmisc}}			\\
-		\multicolumn{2}{c}{\package{caption}}			\\
-		\multicolumn{2}{c}{\package{tikz}}				\\
+		\multicolumn{2}{c}{\package{etoolbox}}				\\
+		\multicolumn{2}{c}{\package{ifluatex}}				\\
+		\multicolumn{2}{c}{\package{ifxetex}}				\\
+		\multicolumn{2}{c}{\package{ifpdf}}					\\
+		\multicolumn{2}{c}{\package{mathtools}}				\\
+		\multicolumn{2}{c}{\package{geometry}}				\\
+		\multicolumn{2}{c}{\package{graphicx}}				\\
+		\multicolumn{2}{c}{\package{hyperref}}				\\
+		\package{inputenc}		&							\\
+		\package{fontenc}		&							\\
+		\phantom{polyglossia}	& \package{fontspec}		\\
+		\package{babel}			& \package{polyglossia}		\\
+		\multicolumn{2}{c}{\package{microtype}}				\\
+		\package{tgheros}		&							\\
+		\multicolumn{2}{c}{\package{inconsolata}}			\\
+		\multicolumn{2}{c}{\package{lmodern}}				\\
+		\multicolumn{2}{c}{\package{xcolor}}				\\
+		\multicolumn{2}{c}{\package{metalogo}}				\\
+		\multicolumn{2}{c}{\package{fancyhdr}}				\\
+		\multicolumn{2}{c}{\package{footmisc}}				\\
+		\multicolumn{2}{c}{\package{caption}}				\\
+		\multicolumn{2}{c}{\package{tikz}}					\\
 		\bottomrule
 	\end{tabular}
 	\caption{Packages loaded by the class file with no optional arguments given.}
@@ -247,6 +248,7 @@ Don't be discouraged to distribute the class file if you are pleased with it and
 	\item [v0.6.2] Removed \command{basic} option.
 	\item [v0.6.3] Added compatibility with unicode engines for the \command{purist} option and changed typewriter text to \package{inconsolata}.
 	\item [v0.7.0] Resolved conflict between options, defined option priority. Added \command{minimal} option.
+	\item [v0.7.1] Added \LuaLaTeX{} support.
 \end{description}
 
 \printbibliography

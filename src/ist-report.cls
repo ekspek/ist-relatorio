@@ -21,7 +21,7 @@
 
 % ---------------- Identification ----------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ist-report}[2018/11/23 v0.7.0 Unofficial IST report class]
+\ProvidesClass{ist-report}[2018/11/28 v0.7.1 Unofficial IST report class]
 
 % ----------------- Initial Code -----------------
 \typeout{_____________________________________________________________________________}
@@ -82,34 +82,37 @@
 \LoadClass{article}
 
 % Define option hierarchy and set conflict resolution
-\ifbool{@purist}{
-	\boolfalse{@minimal}
-	\boolfalse{@twocolumn}
-	\boolfalse{@palatino}
-}{}
-\ifbool{@minimal}{
-	\boolfalse{@twoside}
-	\boolfalse{@twocolumn}
-}{}
-\ifbool{@english}{
-	\boolfalse{@portuguese}
-}{}
+\ifbool{@purist}
+	{ \boolfalse{@minimal} \boolfalse{@twocolumn} \boolfalse{@palatino} }
+	{}
+\ifbool{@minimal}
+	{ \boolfalse{@twoside} \boolfalse{@twocolumn} }
+	{}
+\ifbool{@english}
+	{ \boolfalse{@portuguese} }
+	{}
 
 % Unicode boolean for either XeTeX or LuaTeX
 \newbool{unicode}
 \ifbool{xetex}{
 	\booltrue{unicode}
 }{
-	\ifbool{luatex}{
-		\booltrue{unicode}
-	}{
-		\boolfalse{unicode}
-	}
+	\ifbool{luatex}
+		{ \booltrue{unicode} }
+		{ \boolfalse{unicode} }
 }
 
 \RequirePackage{mathtools}
 
 \RequirePackage{geometry}
+
+% Fix for header and footer margins not updating with renewed margins %
+\let\Oldgeometry\geometry
+\renewcommand{\geometry}[1]{
+	\Oldgeometry{#1}
+	\setlength{\headwidth}{\textwidth}
+}
+
 \RequirePackage{graphicx}
 \RequirePackage{hyperref}
 
@@ -127,11 +130,9 @@
 }{
 	\RequirePackage[utf8]{inputenc}
 	\RequirePackage[T1]{fontenc}
-	\ifbool{@english}{
-		\RequirePackage[english]{babel}
-	}{
-		\RequirePackage[portuguese]{babel}
-	}
+	\ifbool{@english}
+		{ \RequirePackage[english]{babel} }
+		{ \RequirePackage[portuguese]{babel} }
 }
 
 \ifbool{@purist}{
@@ -143,10 +144,12 @@
 			ItalicFont = *-italic,
 			BoldItalicFont = *-bolditalic]{texgyreheros}
 		\setmonofont[Scale = 1.14]{inconsolata}
+		\RequirePackage{newtxsf}
 	}{
 		\RequirePackage{tgheros}
 		\renewcommand{\familydefault}{\sfdefault}
 		\RequirePackage[scaled = 1.14]{inconsolata}
+		\RequirePackage{newtxsf}
 	}
 }{
 	\ifbool{@palatino}{
@@ -196,12 +199,13 @@
 	}{
 		\geometry{a4paper,
 			includeheadfoot,
-			vmargin = 2cm,
+			top = 1cm,
+			bottom = 2cm,
 			hmargin = 3.5cm,
 		}
-		\ifbool{@twoside}{
-			\geometry{twoside}
-		}{}
+		\ifbool{@twoside}
+			{ \geometry{twoside} }
+			{}
 	}
 }
 
