@@ -64,6 +64,7 @@
 \newbool{@blackandwhite}
 \newbool{@purist}
 \newbool{@minimal}
+\newbool{@fira}
 
 % ------------ Declaration of Options ------------
 \DeclareOption{palatino}	{\booltrue{@palatino}}
@@ -72,6 +73,7 @@
 \DeclareOption{bw}			{\booltrue{@blackandwhite}}
 \DeclareOption{purist}		{\booltrue{@purist}}
 \DeclareOption{minimal}		{\booltrue{@minimal}}
+\DeclareOption{fira}		{\booltrue{@fira}}
 \DeclareOption*{\PassOptionsToClass{\CurrentOption}{article}}
 
 % ------------- Execution of Options -------------
@@ -135,6 +137,7 @@
 		{ \RequirePackage[portuguese]{babel} }
 }
 
+% === Main font selection ===
 \ifbool{@purist}{
 	\ifbool{unicode}{
 		\setmainfont[
@@ -160,6 +163,15 @@
 		\RequirePackage{lmodern}
 	}
 }
+
+% Needs more symbiosis with the above block of code
+\ifbool{@fira}{
+	\RequirePackage[sfdefault]{FiraSans}
+	\renewcommand*\oldstylenums[1]{{\firaoldstyle #1}}
+	\RequirePackage{FiraMono}
+	\RequirePackage{newtxsf}
+}{}
+% === End font selection ===
 
 \RequirePackage{microtype}
 \RequirePackage{xcolor}
