@@ -119,7 +119,7 @@
 \RequirePackage{hyperref}
 
 \ifbool{unicode}{
-	\RequirePackage{fontspec}
+	\RequirePackage[no-math]{fontspec}
 	\defaultfontfeatures{Ligatures = TeX}
 	\RequirePackage{polyglossia}
 	\ifbool{@english}{
@@ -149,28 +149,37 @@
 		\setmonofont[Scale = 1.14]{inconsolata}
 		\RequirePackage{newtxsf}
 	}{
+		\RequirePackage{newtxsf}
 		\RequirePackage{tgheros}
 		\renewcommand{\familydefault}{\sfdefault}
 		\RequirePackage[scaled = 1.14]{inconsolata}
-		\RequirePackage{newtxsf}
 	}
 }{
-	\ifbool{@palatino}{
-		\RequirePackage[osf]{newpxtext}
-		\RequirePackage{eulervm}
-		\RequirePackage[scaled = 1.05]{nimbusmononarrow}
+	\ifbool{@fira}{
+		\RequirePackage[sfdefault]{FiraSans}
+		\renewcommand*\oldstylenums[1]{{\firaoldstyle #1}}
+		\ifbool{unicode}{
+			\RequirePackage{unicode-math}
+			\setmathfont[
+				Path = ./fonts/,
+				Extension = .otf]{FiraMath-Regular}
+			}{
+				\RequirePackage{newtxsf}
+			}
+		\RequirePackage{FiraMono}
+		%\ifbool{unicode}
+		%	{ \setmonofont{inconsolata} }
+		%	{ \RequirePackage{inconsolata} }
 	}{
-		\RequirePackage{lmodern}
+		\ifbool{@palatino}{
+			\RequirePackage[osf]{newpxtext}
+			\RequirePackage{eulervm}
+			\RequirePackage[scaled = 1.05]{nimbusmononarrow}
+		}{
+			\RequirePackage{lmodern}
+		}
 	}
 }
-
-% Needs more symbiosis with the above block of code
-\ifbool{@fira}{
-	\RequirePackage[sfdefault]{FiraSans}
-	\renewcommand*\oldstylenums[1]{{\firaoldstyle #1}}
-	\RequirePackage{FiraMono}
-	\RequirePackage{newtxsf}
-}{}
 % === End font selection ===
 
 \RequirePackage{microtype}
