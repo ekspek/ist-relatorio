@@ -131,12 +131,12 @@ This cover makes use of the macros created in the class file. Commands have been
 	\begin{tabular}{l l l l}\toprule
 		Text field		& Command						& Default text			& Default english text	\\
 		\midrule
-		Title			& \mintinline{tex}{\title}		& Título de Exemplo		& Sample Title			\\
-		Subtitle		& \mintinline{tex}{\subtitle}	& 						&						\\
-		Subject			& \mintinline{tex}{\subject}	& Disciplina de Exemplo	& Sample Subject		\\
-		Course			& \mintinline{tex}{\course}		& Curso de Exemplo		& Sample Degree			\\
-		Institution		& \mintinline{tex}{\institution}& \multicolumn{2}{c}{Instituto Superior Técnico}\\
-		Group Number	& \mintinline{tex}{\groupno}	& 						& 						\\
+		Title			& \mintinline{tex}{\settitle}		& Título de Exemplo		& Sample Title			\\
+		Subtitle		& \mintinline{tex}{\setsubtitle}	& 						&						\\
+		Subject			& \mintinline{tex}{\setsubject}	& Disciplina de Exemplo	& Sample Subject		\\
+		Course			& \mintinline{tex}{\setcourse}		& Curso de Exemplo		& Sample Degree			\\
+		Institution		& \mintinline{tex}{\setinstitution}& \multicolumn{2}{c}{Instituto Superior Técnico}\\
+		Group Number	& \mintinline{tex}{\setgroupno}	& 						& 						\\
 		\bottomrule
 	\end{tabular}
 	\caption{Document macros for covers, headers and footers.}
@@ -145,12 +145,12 @@ This cover makes use of the macros created in the class file. Commands have been
 
 \begin{listing}[ht]
 	\begin{minted}[linenos]{tex}
-\title{Relatório Laboratorial}
-\subtitle{Ondas Estacionárias em Cordas Vibrantes}
-\subject{Mecânica e Ondas}
+\settitle{Relatório Laboratorial}
+\setsubtitle{Ondas Estacionárias em Cordas Vibrantes}
+\setsubject{Mecânica e Ondas}
 \author{Daniel de Schiffart \\ 81479 \and Daniel Lopes \\ 81479}
-\course{Mestrado Integrado em Engenharia Aeroespacial}
-\groupno{5}
+\setcourse{Mestrado Integrado em Engenharia Aeroespacial}
+\setgroupno{5}
 \date{Novembro de 2015}
 \makecover{}
 	\end{minted}
@@ -251,6 +251,7 @@ Don't be discouraged to distribute the class file if you are pleased with it and
 	\item [v0.7.0] Resolved conflict between options, defined option priority. Added \command{minimal} option.
 	\item [v0.7.1] Added \LuaLaTeX{} support.
 	\item [v0.7.2] Added \command{fira} option. Fixed conflicts with sans serif fonts (which included the \command{purist} option).
+	\item [v0.7.3] Updated metadata commands, fixed \package{mathtools} and \package{unicode-math} conflicts.
 \end{description}
 
 \printbibliography

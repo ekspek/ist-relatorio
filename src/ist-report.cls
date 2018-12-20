@@ -21,7 +21,7 @@
 
 % ---------------- Identification ----------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ist-report}[2018/12/20 v0.7.2 Unofficial IST report class]
+\ProvidesClass{ist-report}[2018/12/20 v0.7.3 Unofficial IST report class]
 
 % ----------------- Initial Code -----------------
 \typeout{_____________________________________________________________________________}
@@ -104,11 +104,16 @@
 		{ \boolfalse{unicode} }
 }
 
-\RequirePackage{mathtools}
+\ifbool{@fira}{
+	\RequirePackage{amsmath}
+	\RequirePackage{amssymb}
+}{
+	\RequirePackage{mathtools}
+}
 
 \RequirePackage{geometry}
 
-% Fix for header and footer margins not updating with renewed margins %
+% Fix for header and footer margins not updating with renewed margins
 \let\Oldgeometry\geometry
 \renewcommand{\geometry}[1]{
 	\Oldgeometry{#1}
@@ -139,10 +144,10 @@
 		\setmonofont[Scale = 1.14]{inconsolata}
 		\RequirePackage{newtxsf}
 	}{
-		\RequirePackage{newtxsf}
 		\RequirePackage{tgheros}
 		\renewcommand{\familydefault}{\sfdefault}
 		\RequirePackage[scaled = 1.14]{inconsolata}
+		\RequirePackage{newtxsf}
 	}
 }{
 	\ifbool{@fira}{
@@ -252,20 +257,20 @@
 	\csdef{@subtitle}{Sample Subtitle}
 	\csdef{@subject}{Sample Subject}
 	\csdef{@course}{Sample Degree}
-	\newcommand*\groupno[1]{\csdef{@groupno}{Group #1}}
+	\newcommand*\setgroupno[1]{\csdef{@groupno}{Group #1}}
 }{
 	\csdef{@title}{Título de Exemplo}
 	\csdef{@subtitle}{Subtítulo de Exemplo}
 	\csdef{@subject}{Disciplina de Exemplo}
 	\csdef{@course}{Curso de Exemplo}
-	\newcommand*\groupno[1]{\csdef{@groupno}{Grupo #1}}
+	\newcommand*\setgroupno[1]{\csdef{@groupno}{Grupo #1}}
 }
 
-\renewcommand*\title[1]{\csdef{@title}{#1}}
-\newcommand*\subtitle[1]{\csdef{@subtitle}{#1}}
-\newcommand*\subject[1]{\csdef{@subject}{#1}}
-\newcommand*\course[1]{\csdef{@course}{#1}}
-\newcommand*\institution[1]{\csdef{@institution}{#1}}
+\newcommand*\settitle[1]{\csdef{@title}{#1}}
+\newcommand*\setsubtitle[1]{\csdef{@subtitle}{#1}}
+\newcommand*\setsubject[1]{\csdef{@subject}{#1}}
+\newcommand*\setcourse[1]{\csdef{@course}{#1}}
+\newcommand*\setinstitution[1]{\csdef{@institution}{#1}}
 
 %  == Minimal mode header
 \newrobustcmd\makeheader{
@@ -274,7 +279,7 @@
 		\includegraphics[scale=0.3, trim = {93.4pt 219.7pt 77pt 221.9pt}]{IST_C_CMYK_POS}
 		
 		\vspace*{3mm}
-		{\huge \textsc{\@title}} \\
+		{\huge \textbf{\@title}} \\
 		\vspace*{4mm}
 		{\LARGE \@subtitle}
 		\vspace*{4mm} \\
@@ -323,6 +328,7 @@
 	\setcounter{page}{1}
 }
 
+\newbool{fullshield}
 %  == Page style examples ==
 \fancypagestyle{default}{
 	\fancyhf{}
@@ -330,15 +336,17 @@
 	\renewcommand\footrulewidth{0pt}
 	\fancyfoot[C]{\raisebox{-8.55pt}{
 		\begin{tikzpicture}[x = 0.053cm, y = 0.05367cm]
-			\coordinate (c1) at (0,0);
-			\coordinate (c2) at (11,0);
-			\coordinate (c3) at (11,-5);
-			\coordinate (c4) at (5.5,-13);
-			\coordinate (c5) at (0,-5);
-			\coordinate (center) at (5.5,-6.5);
-			\coordinate (text) at (5.5,-5.5);
-			\draw [thin, color = {black}] (c1) to (c2) to (c3) to [out = -90, in = 30] (c4) to [out = 150, in = -90] (c5) to cycle;
-			\node (pageno) at (text) [align = center] {\thepage};
+			\coordinate (text) at (0,0);
+			\path (text) ++(-5.5,5.5) coordinate (e1);
+			\path (text) ++(5.5,0.5) coordinate (e2);
+			\path (text) ++(0,-7.5) coordinate (e3);
+			\ifbool{fullshield}{
+				\path [fill, color = {ist-cyan}] (e1) to (e1-|e2) to (e2) to [out = -90, in = 30] (e3) to [out = 150, in = -90] (e1|-e2) to cycle;
+				\node (text_fill) at (0,0) [align = center, inner sep = 0pt] {\color{white} \textbf \thepage};
+			}{
+				\path [thin, draw, color = {black}] (e1) to (e1-|e2) to (e2) to [out = -90, in = 30] (e3) to [out = 150, in = -90] (e1|-e2) to cycle;
+				\node (text_black) at (text) [align = center, inner sep = 0pt] {\thepage};
+			}
 		\end{tikzpicture}}
 	}
 	\ifbool{@twoside}{

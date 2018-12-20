@@ -1,12 +1,12 @@
 % arara: xelatex: { shell: yes, synctex: yes }
-\documentclass[english,fira]{ist-report}
+\documentclass[english,palatino]{ist-report}
 
 \usepackage{lipsum}
 
-\title{Minimum Working Example}
+\settitle{Minimum Working Example}
 \author{Daniel de Schiffart}
-\groupno{5}
-\subject{Class Usage Testing}
+\setgroupno{5}
+\setsubject{Class Usage Testing}
 
 \begin{document}
 
@@ -30,13 +30,14 @@
 	\item \textsc{This is smallcaps text.}
 	\item This is regular text mixed with \texttt{monospace} monospace in between.
 	\item These are two identical lines, one in monospace and one not. \\ {\ttfamily These are two identical lines, one in monospace and one not.}
+	\item \textsf{This is sans serif text.}
 \end{itemize}
 
 This is equation. $x = 2y$
 
 This is a \texttt{gather*} equation.
 \begin{gather*}
-	x = 2y
+	x = 2y = \int_{-\infty}^{+\infty}\frac{s^2 - 2s}{s^3 + 5s - 32}\,ds
 \end{gather*}
 
 \section{Another Section}
