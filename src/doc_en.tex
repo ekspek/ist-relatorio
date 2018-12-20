@@ -117,6 +117,7 @@ This section contains the full list of available class options and what argument
 	\item [Black and white] Loaded using \command{bw}. This option activates black and white mode, which sets all custom colors of the document to black except for the logo colors, which cannot be changed via \LaTeX{}. This is recommended for printing, as the cyan color used in a number of things may look faded in standard black and white printing.
 	\item [Purist] Loaded using \command{purist}. Remakes the document to match the IST thesis reference guide rules as close as possible. Currently, sets the font to Helvetica (pdf\LaTeX{}) or \TeX{} Gyre Heros (\XeLaTeX{}), the line spacing to $1.5$, and the margins to \SI{2.5}{\centi\meter}. Takes priority over \command{minimal} and \command{palatino}. Off by default.
 	\item [Minimal] Loaded using \command{minimal}. Sets document margins to \SI{1}{\centi\meter}, and the body of the document to a two-column mode.
+	\item [fira] Loaded using \command{fira}. Similar to \command{purist}, but loads the Fira Sans font family instead. Requires the \texttt{FiraMath-Regular.otf} font file provided in the class repository page.
 \end{description}
 While not fully tested, most options for the \LaTeX{} \command{article} class (the class upon which the present class is based upon) can be used with this class as well, namely \command{twoside}. However, compatibility issues may arise for some options.
 
@@ -249,6 +250,7 @@ Don't be discouraged to distribute the class file if you are pleased with it and
 	\item [v0.6.3] Added compatibility with unicode engines for the \command{purist} option and changed typewriter text to \package{inconsolata}.
 	\item [v0.7.0] Resolved conflict between options, defined option priority. Added \command{minimal} option.
 	\item [v0.7.1] Added \LuaLaTeX{} support.
+	\item [v0.7.2] Added \command{fira} option. Fixed conflicts with sans serif fonts (which included the \command{purist} option).
 \end{description}
 
 \printbibliography

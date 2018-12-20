@@ -21,7 +21,7 @@
 
 % ---------------- Identification ----------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ist-report}[2018/11/28 v0.7.1 Unofficial IST report class]
+\ProvidesClass{ist-report}[2018/12/20 v0.7.2 Unofficial IST report class]
 
 % ----------------- Initial Code -----------------
 \typeout{_____________________________________________________________________________}
@@ -118,37 +118,17 @@
 \RequirePackage{graphicx}
 \RequirePackage{hyperref}
 
-%==============Problem lies here===============
 \ifbool{unicode}{
 	\RequirePackage[no-math]{fontspec}
 	\defaultfontfeatures{Ligatures = TeX}
-	\RequirePackage{polyglossia}
-	\ifbool{@english}{
-		\setmainlanguage[variant = british]{english}
-		\setotherlanguage{portuges}
-	}{
-		\setmainlanguage{portuges}
-		\setotherlanguage[variant = british]{english}
-	}
 }{
 	\RequirePackage[utf8]{inputenc}
 	\RequirePackage[T1]{fontenc}
-	\ifbool{@english}
-		{ \RequirePackage[english]{babel} }
-		{ \RequirePackage[portuguese]{babel} }
 }
-%==============Problem lies here===============
 
 % === Main font selection ===
 \ifbool{@purist}{
 	\ifbool{unicode}{
-		%\RequirePackage[sfdefault]{FiraSans}
-		%\renewcommand*\oldstylenums[1]{{\firaoldstyle #1}}
-		%\RequirePackage[mathrm = sym]{unicode-math}
-		%\setmathfont[
-		%	Path = ./fonts/,
-		%	Extension = .otf]{FiraMath-Regular}
-		%\RequirePackage{FiraMono}
 		\setsansfont[
 			Extension = .otf,
 			UprightFont = *-regular,
@@ -174,13 +154,10 @@
 			\setmathfont[
 				Path = ./fonts/,
 				Extension = .otf]{FiraMath-Regular}
-			}{
-				\RequirePackage{newtxsf}
-			}
+		}{
+			\RequirePackage{newtxsf}
+		}
 		\RequirePackage{FiraMono}
-		%\ifbool{unicode}
-		%	{ \setmonofont{inconsolata} }
-		%	{ \RequirePackage{inconsolata} }
 	}{
 		\ifbool{@palatino}{
 			\RequirePackage[osf]{newpxtext}
@@ -192,6 +169,21 @@
 	}
 }
 % === End font selection ===
+
+\ifbool{unicode}{
+	\RequirePackage{polyglossia}
+	\ifbool{@english}{
+		\setmainlanguage[variant = british]{english}
+		\setotherlanguage{portuges}
+	}{
+		\setmainlanguage{portuges}
+		\setotherlanguage[variant = british]{english}
+	}
+}{
+	\ifbool{@english}
+		{ \RequirePackage[english]{babel} }
+		{ \RequirePackage[portuguese]{babel} }
+}
 
 \RequirePackage{microtype}
 \RequirePackage{xcolor}
