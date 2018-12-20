@@ -118,6 +118,7 @@
 \RequirePackage{graphicx}
 \RequirePackage{hyperref}
 
+%==============Problem lies here===============
 \ifbool{unicode}{
 	\RequirePackage[no-math]{fontspec}
 	\defaultfontfeatures{Ligatures = TeX}
@@ -136,16 +137,25 @@
 		{ \RequirePackage[english]{babel} }
 		{ \RequirePackage[portuguese]{babel} }
 }
+%==============Problem lies here===============
 
 % === Main font selection ===
 \ifbool{@purist}{
 	\ifbool{unicode}{
-		\setmainfont[
-			UprightFont = *-regular,
+		%\RequirePackage[sfdefault]{FiraSans}
+		%\renewcommand*\oldstylenums[1]{{\firaoldstyle #1}}
+		%\RequirePackage[mathrm = sym]{unicode-math}
+		%\setmathfont[
+		%	Path = ./fonts/,
+		%	Extension = .otf]{FiraMath-Regular}
+		%\RequirePackage{FiraMono}
+		\setsansfont[
 			Extension = .otf,
+			UprightFont = *-regular,
 			BoldFont = *-bold,
 			ItalicFont = *-italic,
 			BoldItalicFont = *-bolditalic]{texgyreheros}
+		\renewcommand{\familydefault}{\sfdefault}
 		\setmonofont[Scale = 1.14]{inconsolata}
 		\RequirePackage{newtxsf}
 	}{
@@ -156,10 +166,11 @@
 	}
 }{
 	\ifbool{@fira}{
+		\booltrue{@purist}
 		\RequirePackage[sfdefault]{FiraSans}
 		\renewcommand*\oldstylenums[1]{{\firaoldstyle #1}}
 		\ifbool{unicode}{
-			\RequirePackage{unicode-math}
+			\RequirePackage[mathrm = sym]{unicode-math}
 			\setmathfont[
 				Path = ./fonts/,
 				Extension = .otf]{FiraMath-Regular}
@@ -201,10 +212,7 @@
 %  == Setup ==
 
 \ifbool{@purist}{
-	\geometry{a4paper,
-		vmargin = 2.5cm,
-		hmargin = 2.5cm,
-	}
+	\geometry{a4paper, margin = 2.5cm}
 	\renewcommand\baselinestretch{1.5}
 }{
 	\ifbool{@minimal}{
