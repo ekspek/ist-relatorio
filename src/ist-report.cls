@@ -85,7 +85,10 @@
 
 % Define option hierarchy and set conflict resolution
 \ifbool{@purist}
-	{ \boolfalse{@minimal} \boolfalse{@twocolumn} \boolfalse{@palatino} }
+	{ \boolfalse{@minimal} \boolfalse{@twocolumn} \boolfalse{@palatino} \boolfalse{@fira} }
+	{}
+\ifbool{@fira}
+	{ \boolfalse{@palatino} }
 	{}
 \ifbool{@minimal}
 	{ \boolfalse{@twoside} \boolfalse{@twocolumn} }
@@ -126,6 +129,7 @@
 \ifbool{unicode}{
 	\RequirePackage[no-math]{fontspec}
 	\defaultfontfeatures{Ligatures = TeX}
+	\RequirePackage{unicode-math}
 }{
 	\RequirePackage[utf8]{inputenc}
 	\RequirePackage[T1]{fontenc}
@@ -151,14 +155,10 @@
 	}
 }{
 	\ifbool{@fira}{
-		\booltrue{@purist}
 		\RequirePackage[sfdefault]{FiraSans}
 		\renewcommand*\oldstylenums[1]{{\firaoldstyle #1}}
 		\ifbool{unicode}{
-			\RequirePackage[mathrm = sym]{unicode-math}
-			\setmathfont[
-				Path = ./fonts/,
-				Extension = .otf]{FiraMath-Regular}
+			\setmathfont{Fira Math}
 		}{
 			\RequirePackage{newtxsf}
 		}
@@ -223,15 +223,20 @@
 			foot = 22pt,
 		}
 	}{
-		\geometry{a4paper,
-			includeheadfoot,
-			top = 1cm,
-			bottom = 2cm,
-			hmargin = 3.5cm,
+		\ifbool{@fira}{
+			\geometry{a4paper, margin = 2.5cm}
+			\renewcommand\baselinestretch{1.15}
+		}{
+			\geometry{a4paper,
+				includeheadfoot,
+				top = 1cm,
+				bottom = 2cm,
+				hmargin = 3.5cm,
+			}
+			\ifbool{@twoside}
+				{ \geometry{twoside} }
+				{}
 		}
-		\ifbool{@twoside}
-			{ \geometry{twoside} }
-			{}
 	}
 }
 
