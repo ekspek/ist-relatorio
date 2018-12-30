@@ -21,7 +21,7 @@
 
 % ---------------- Identification ----------------
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{ist-report}[2018/12/20 v0.7.3 Unofficial IST report class]
+\ProvidesClass{ist-report}[2018/12/30 v0.7.4 Unofficial IST report class]
 
 % ----------------- Initial Code -----------------
 \typeout{_____________________________________________________________________________}
@@ -107,13 +107,7 @@
 		{ \boolfalse{unicode} }
 }
 
-\ifbool{@fira}{
-	\RequirePackage{amsmath}
-	\RequirePackage{amssymb}
-}{
-	\RequirePackage{mathtools}
-}
-
+\RequirePackage{mathtools}
 \RequirePackage{geometry}
 
 % Fix for header and footer margins not updating with renewed margins
@@ -128,8 +122,6 @@
 
 \ifbool{unicode}{
 	\RequirePackage[no-math]{fontspec}
-	\defaultfontfeatures{Ligatures = TeX}
-	\RequirePackage{unicode-math}
 }{
 	\RequirePackage[utf8]{inputenc}
 	\RequirePackage[T1]{fontenc}
@@ -137,6 +129,7 @@
 
 % === Main font selection ===
 \ifbool{@purist}{
+	\renewcommand{\familydefault}{\sfdefault}
 	\ifbool{unicode}{
 		\setsansfont[
 			Extension = .otf,
@@ -144,33 +137,19 @@
 			BoldFont = *-bold,
 			ItalicFont = *-italic,
 			BoldItalicFont = *-bolditalic]{texgyreheros}
-		\renewcommand{\familydefault}{\sfdefault}
 		\setmonofont[Scale = 1.14]{inconsolata}
-		\RequirePackage{newtxsf}
 	}{
 		\RequirePackage{tgheros}
-		\renewcommand{\familydefault}{\sfdefault}
 		\RequirePackage[scaled = 1.14]{inconsolata}
-		\RequirePackage{newtxsf}
 	}
+	\RequirePackage{newtxsf}
 }{
-	\ifbool{@fira}{
-		\RequirePackage[sfdefault]{FiraSans}
-		\renewcommand*\oldstylenums[1]{{\firaoldstyle #1}}
-		\ifbool{unicode}{
-			\setmathfont{Fira Math}
-		}{
-			\RequirePackage{newtxsf}
-		}
-		\RequirePackage{FiraMono}
+	\ifbool{@palatino}{
+		\RequirePackage[osf]{newpxtext}
+		\RequirePackage{eulervm}
+		\RequirePackage[scaled = 1.05]{nimbusmononarrow}
 	}{
-		\ifbool{@palatino}{
-			\RequirePackage[osf]{newpxtext}
-			\RequirePackage{eulervm}
-			\RequirePackage[scaled = 1.05]{nimbusmononarrow}
-		}{
-			\RequirePackage{lmodern}
-		}
+		\RequirePackage{lmodern}
 	}
 }
 % === End font selection ===
@@ -198,11 +177,11 @@
 \RequirePackage{caption}
 \RequirePackage{tikz}
 
-\ifbool{@minimal}{
-	\RequirePackage{multicol}
-	\AfterEndPreamble{\begin{multicols}{2}}
-	\AtEndDocument{\end{multicols}}
-}{}
+%\ifbool{@minimal}{
+%	\RequirePackage{multicol}
+%	\AfterEndPreamble{\begin{multicols}{2}}
+%	\AtEndDocument{\end{multicols}}
+%}{}
 
 % ------------------ Main Code -------------------
 
@@ -279,56 +258,56 @@
 
 %  == Minimal mode header
 \newrobustcmd\makeheader{
-	\ifbool{@minimal}{\end{multicols}}{}
+	%\ifbool{@minimal}{\end{multicols}}{}
 	\begin{center}
 		\includegraphics[scale=0.3, trim = {93.4pt 219.7pt 77pt 221.9pt}]{IST_C_CMYK_POS}
-		
+
 		\vspace*{3mm}
 		{\huge \textbf{\@title}} \\
 		\vspace*{4mm}
 		{\LARGE \@subtitle}
 		\vspace*{4mm} \\
 		{\large \@author}
-		
+
 		\vspace*{3mm}
 		{\Large \@coverdate}
 		\vspace*{4mm} \\
 		\rule{\linewidth}{0.5pt}
 	\end{center}
-	\ifbool{@minimal}{\begin{multicols}{2}}
+	%\ifbool{@minimal}{\begin{multicols}{2}}
 }
 
 %  == Cover examples ==
 \newrobustcmd\makecover{
 	\begin{titlepage}
-	
+
 	\begin{center}
 		\vspace*{0.1\textheight}
 		\includegraphics[width = 0.4\linewidth, trim = {172.4pt 202.7pt 172.6pt 201.4pt}, clip]{IST_A_CMYK_POS}
-		
+
 		\vspace*{0.1\textheight}
 		{\huge\bfseries\@title}
-		
+
 		\vspace*{0.01\textheight}
 		\ifcsdef{@subtitle}{\Large\@subtitle}{}
-		
+
 		\vspace*{0.3\textheight}
 		{\Large\begin{tabular}[t]{c}\@author\end{tabular}}
 		{\ifdefempty{\@groupno}{}{\vspace*{0.01\textheight}\\\@groupno}}
-		
+
 		\vspace{\fill}
 		{\large \@subject}
-		
+
 		\vspace*{0.01\textheight}
 		{\Large\@course}
-		
+
 		\vspace*{0.01\textheight}
 		{\large\@institution}
-		
+
 		\vspace*{0.01\textheight}
 		{\@date}
 	\end{center}
-	
+
 	\end{titlepage}
 	\setcounter{page}{1}
 }

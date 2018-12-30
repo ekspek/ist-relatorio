@@ -11,7 +11,7 @@
 \usepackage{minted}
 \definecolor{bg}{rgb}{0.97,0.97,0.97}
 \setminted[tex]{bgcolor = bg, breaklines}
-\setmintedinline[tex]{bgcolor = {}} 
+\setmintedinline[tex]{bgcolor = {}}
 
 % -- Bibliography
 \usepackage{csquotes}
@@ -42,8 +42,8 @@
 
 \begin{document}
 
-\institution{}
-\title{}
+\setinstitution{}
+\settitle{}
 
 \begin{center}
 	\vspace*{1cm}
@@ -55,13 +55,13 @@
 	{\url{https://github.com/ekspek/ist-relatorio}}
 	\bigskip\smallskip\par
 	\today \\
-	\textbf{v0.7.1}
+	\textbf{v0.7.4}
 \end{center}
 \vspace*{1cm}
 
 \begin{abstract}
 	This \LaTeX{} class was developed as an unofficial template for reports developed for the Instituto Superior Técnico of Universidade de Lisboa, themed around the style the university has developed for its own internal documentation, complemented by using specifications defined by the university itself, all the while taking some creative liberties with the missing definitions.
-	
+
 	This document details the class file, what it exactly contains, what its options are, and a concise documentation of its development, which will grow as the class file progresses. The class file itself, \texttt{ist-report.cls}, should be in the same directory as the \texttt{doc.tex} file.
 \end{abstract}
 
@@ -115,9 +115,8 @@ This section contains the full list of available class options and what argument
 	\item [Palatino] Loaded using \command{palatino}. This option changes the main font to the palatino-inspired \package{newpxtext}, with math text using \package{eulervm} and typewriter text to \package{nimbusmono}. Off by default.
 	\item [Portuguese or english] Loaded using \command{portuguese} or using \command{english}. Both options refer to setting the document's main language to either portuguese or english. If using \XeLaTeX{}, which loads \package{polyglossia}, both languages will be loaded, with the chosen language set as the main language. Otherwise, using \package{babel}, only the chosen language will be loaded. Currently, the \command{english} option has priority over \command{portuguese}, but \command{portuguese} is set by default.
 	\item [Black and white] Loaded using \command{bw}. This option activates black and white mode, which sets all custom colors of the document to black except for the logo colors, which cannot be changed via \LaTeX{}. This is recommended for printing, as the cyan color used in a number of things may look faded in standard black and white printing.
-	\item [Purist] Loaded using \command{purist}. Remakes the document to match the IST thesis reference guide rules as close as possible. Currently, sets the font to Helvetica (pdf\LaTeX{}) or \TeX{} Gyre Heros (\XeLaTeX{}), the line spacing to $1.5$, and the margins to \SI{2.5}{\centi\meter}. Takes priority over \command{minimal} and \command{palatino}. Off by default.
-	\item [Minimal] Loaded using \command{minimal}. Sets document margins to \SI{1}{\centi\meter}, and the body of the document to a two-column mode.
-	\item [fira] Loaded using \command{fira}. Similar to \command{purist}, but loads the Fira Sans font family instead. Requires the \texttt{FiraMath-Regular.otf} font file provided in the class repository page.
+	\item [Purist] Loaded using \command{purist}. Remakes the document to match the IST thesis reference guide rules as close as possible. Currently, sets the font to \TeX{} Gyre Heros (a font closely resembling \textit{Helvetica}, which \textit{Arial} is based off of), the line spacing to $1.5$, and the margins to \SI{2.5}{\centi\meter}. Takes priority over \command{minimal} and \command{palatino}. Off by default.
+	\item [Minimal] Loaded using \command{minimal}. Sets document margins to \SI{1}{\centi\meter}.%, and the body of the document to a two-column mode.
 \end{description}
 While not fully tested, most options for the \LaTeX{} \command{article} class (the class upon which the present class is based upon) can be used with this class as well, namely \command{twoside}. However, compatibility issues may arise for some options.
 
@@ -133,10 +132,10 @@ This cover makes use of the macros created in the class file. Commands have been
 		\midrule
 		Title			& \mintinline{tex}{\settitle}		& Título de Exemplo		& Sample Title			\\
 		Subtitle		& \mintinline{tex}{\setsubtitle}	& 						&						\\
-		Subject			& \mintinline{tex}{\setsubject}	& Disciplina de Exemplo	& Sample Subject		\\
+		Subject			& \mintinline{tex}{\setsubject}		& Disciplina de Exemplo	& Sample Subject		\\
 		Course			& \mintinline{tex}{\setcourse}		& Curso de Exemplo		& Sample Degree			\\
-		Institution		& \mintinline{tex}{\setinstitution}& \multicolumn{2}{c}{Instituto Superior Técnico}\\
-		Group Number	& \mintinline{tex}{\setgroupno}	& 						& 						\\
+		Institution		& \mintinline{tex}{\setinstitution}	& \multicolumn{2}{c}{Instituto Superior Técnico}\\
+		Group Number	& \mintinline{tex}{\setgroupno}		& 						& 						\\
 		\bottomrule
 	\end{tabular}
 	\caption{Document macros for covers, headers and footers.}
@@ -252,6 +251,7 @@ Don't be discouraged to distribute the class file if you are pleased with it and
 	\item [v0.7.1] Added \LuaLaTeX{} support.
 	\item [v0.7.2] Added \command{fira} option. Fixed conflicts with sans serif fonts (which included the \command{purist} option).
 	\item [v0.7.3] Updated metadata commands, fixed \package{mathtools} and \package{unicode-math} conflicts.
+	\item [v0.7.4] Cleaned up code, removed \command{minimal}'s two column mode for later edits, removed \command{fira}.
 \end{description}
 
 \printbibliography
