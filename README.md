@@ -1,6 +1,6 @@
 # Relatório Exemplo Não Oficial para o Instituto Superior Técnico
 
-[Read this page in english.](README_EN.md)
+[Read this page in english](README_EN.md), or [read the quick start quide](doc/README.md).
 
 Relatório de exemplo não oficial para alunos do Instituto Superior Técnico. Este projecto é independente da Universidade de Lisboa e do Instituto Superior Técnico e toma algumas liberdades com estrutura e aspeto, tentando no entanto aderir a regulamentos do Instituto Superior Técnico quando possível.
 
