@@ -6,7 +6,7 @@ Relatório de exemplo não oficial para alunos do Instituto Superior Técnico. E
 
 ## Utilização
 
-Para compilar um documento em LaTeX com esta classe, só é necessário fazer download do ficheiro [`ist-report.cls`](src/ist-report.cls).
+Para compilar um documento em LaTeX com esta classe, só é necessário fazer download do ficheiro [`ist-report.cls`](./ist-report.cls).
 1. Colocar o ficheiro `ist-report.cls` na mesma pasta que o documento `.tex` a compilar;
 2. Incluir a linha abaixo no início do ficheiro;
 ````tex
